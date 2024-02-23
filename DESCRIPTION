@@ -6,8 +6,10 @@ Version: 0.0.1
 Authors@R: 
     c(person("Vince", "Carey", email="stvjc@channing.harvard.edu",
     role=c("cre", "aut")))
-Depends: R (>= 4.3), reticulate, methods, SummarizedExperiment
-Imports: basilisk
+Depends: R (>= 4.3), reticulate, methods, SummarizedExperiment,
+	SingleCellExperiment
+Suggests: TENxPBMCData, scuttle
+Imports: basilisk, scran
 License: Artistic-2.0
 biocViews: StatisticalMethod, DimensionReduction, Infrastructure
 RoxygenNote: 7.3.1
