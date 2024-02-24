@@ -10,22 +10,277 @@
 * this is package 'BiocBigGraph' version '0.0.1'
 * package encoding: UTF-8
 * checking package namespace information ... OK
-* checking package dependencies ... ERROR
-Packages required but not available:
-  'reticulate', 'SingleCellExperiment', 'basilisk', 'scran'
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  node_modules/.package-lock.json
+  node_modules/concat-map/.travis.yml
+  node_modules/delayed-stream/.npmignore
+  node_modules/events/.airtap.yml
+  node_modules/events/.travis.yml
+  node_modules/process/.eslintrc
+  node_modules/tr46/.npmignore
+  node_modules/tr46/lib/.gitkeep
+  node_modules/tunnel/.travis.yml
+  .github
+  inst/python/fbsource/.circleci
+  inst/python/fbsource/.github
+  node_modules/.bin
+  node_modules/@actions/core/node_modules/.bin
+  node_modules/@azure/core-http/node_modules/.bin
+  node_modules/@azure/ms-rest-js/node_modules/.bin
+  node_modules/balanced-match/.github
+  node_modules/events/.github
+  node_modules/tunnel/.idea
+These were most likely included in error. See section 'Package
+structure' in the 'Writing R Extensions' manual.
+* checking for portable file names ... NOTE
+Found the following non-portable file paths:
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js.map
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js.map
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/index.js
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/index.js.map
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/AbortError.d.ts
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/AbortError.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/index.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/tsdoc-metadata.json
+  BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/credentials/basicAuthenticationCredentials.js
+  BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/credentials/basicAuthenticationCredentials.js.map
+  BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/bearerTokenAuthenticationPolicy.js.map
+  BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/disableResponseDecompressionPolicy.browser.js
+  BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/disableResponseDecompressionPolicy.browser.js.map
+  BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/disableResponseDecompressionPolicy.js
+  BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/disableResponseDecompressionPolicy.js.map
+  BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/generateClientRequestIdPolicy.js.map
+  BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/msRestUserAgentPolicy.browser.js.map
+  BiocBigGraph/node_modules/@azure/core-http/types/3.1/src/credentials/basicAuthenticationCredentials.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/3.1/src/policies/bearerTokenAuthenticationPolicy.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/3.1/src/policies/disableResponseDecompressionPolicy.browser.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/3.1/src/policies/disableResponseDecompressionPolicy.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/credentials/accessTokenRefresher.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/credentials/basicAuthenticationCredentials.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/credentials/basicAuthenticationCredentials.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/credentials/serviceClientCredentials.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/credentials/serviceClientCredentials.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/bearerTokenAuthenticationPolicy.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/bearerTokenAuthenticationPolicy.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/disableResponseDecompressionPolicy.browser.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/disableResponseDecompressionPolicy.browser.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/disableResponseDecompressionPolicy.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/disableResponseDecompressionPolicy.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/generateClientRequestIdPolicy.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/generateClientRequestIdPolicy.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/msRestUserAgentPolicy.browser.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/msRestUserAgentPolicy.browser.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/msRestUserAgentPolicy.native.d.ts
+  BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/msRestUserAgentPolicy.native.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js.map
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js.map
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/dist-esm/src/index.js.map
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/AbortError.d.ts
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/AbortError.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/index.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/tsdoc-metadata.json
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js.map
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js.map
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/index.js
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/index.js.map
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/AbortError.d.ts
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/AbortError.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/index.d.ts.map
+  BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/tsdoc-metadata.json
+  BiocBigGraph/node_modules/@azure/ms-rest-js/es/lib/credentials/azureIdentityTokenCredentialAdapter.d.ts
+  BiocBigGraph/node_modules/@azure/ms-rest-js/es/lib/credentials/azureIdentityTokenCredentialAdapter.d.ts.map
+  BiocBigGraph/node_modules/@azure/ms-rest-js/es/lib/credentials/azureIdentityTokenCredentialAdapter.js
+  BiocBigGraph/node_modules/@azure/ms-rest-js/es/lib/credentials/azureIdentityTokenCredentialAdapter.js.map
+  BiocBigGraph/node_modules/@azure/ms-rest-js/es/lib/credentials/basicAuthenticationCredentials.d.ts.map
+  BiocBigGraph/node_modules/@azure/ms-rest-js/node_modules/tslib/test/validateModuleExportsMatchCommonJS/index.js
+  BiocBigGraph/node_modules/@azure/ms-rest-js/node_modules/tslib/test/validateModuleExportsMatchCommonJS/package.json
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/BlobDownloadResponse.browser.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/BlobDownloadResponse.browser.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/BlobQueryResponse.browser.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/StorageBrowserPolicyFactory.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/StorageBrowserPolicyFactory.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/StorageRetryPolicyFactory.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/TelemetryPolicyFactory.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/AnonymousCredential.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/AnonymousCredential.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/Credential.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/StorageSharedKeyCredential.browser.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/StorageSharedKeyCredential.browser.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/StorageSharedKeyCredential.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/StorageSharedKeyCredential.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/UserDelegationKeyCredential.browser.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/UserDelegationKeyCredential.browser.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/UserDelegationKeyCredential.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/UserDelegationKeyCredential.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/index.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/index.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/mappers.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/mappers.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/parameters.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/parameters.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/appendBlob.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/appendBlob.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/blob.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/blob.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/blockBlob.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/blockBlob.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/container.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/container.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/index.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/index.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/pageBlob.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/pageBlob.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/service.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/service.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/storageClient.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/storageClient.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/storageClientContext.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/storageClientContext.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/AnonymousCredentialPolicy.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/AnonymousCredentialPolicy.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/CredentialPolicy.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageBearerTokenChallengeAuthenticationPolicy.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageBearerTokenChallengeAuthenticationPolicy.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageBrowserPolicy.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageBrowserPolicy.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageRetryPolicy.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageRetryPolicy.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageSharedKeyCredentialPolicy.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageSharedKeyCredentialPolicy.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/TelemetryPolicy.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/pollers/BlobStartCopyFromUrlPoller.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/pollers/BlobStartCopyFromUrlPoller.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASPermissions.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASResourceTypes.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASResourceTypes.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASServices.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASSignatureValues.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASSignatureValues.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/BlobSASPermissions.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/BlobSASSignatureValues.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/BlobSASSignatureValues.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/ContainerSASPermissions.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/ContainerSASPermissions.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/SASQueryParameters.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/utils/BlobQuickQueryStream.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/utils/BlobQuickQueryStream.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/utils/RetriableReadableStream.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/utils/RetriableReadableStream.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-common/src/BufferScheduler.browser.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/AvroConstants.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/AvroReadableFromBlob.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/AvroReadableFromBlob.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/AvroReadableFromStream.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/AvroReadableFromStream.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/index.browser.js.map
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/utils/utils.common.js
+  BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/utils/utils.common.js.map
+  BiocBigGraph/node_modules/@opentelemetry/api/build/esnext/trace/internal/tracestate-validators.js.map
+  BiocBigGraph/node_modules/@azure/ms-rest-js/node_modules/tslib/test/validateModuleExportsMatchCommonJS
 
-Packages suggested but not available: 'TENxPBMCData', 'scuttle'
+Tarballs are only required to store paths of up to 100 bytes and cannot
+store those of more than 256 bytes, with restrictions including to 100
+bytes for the final component.
+See section 'Package structure' in the 'Writing R Extensions' manual.
+* checking for sufficient/correct file permissions ... OK
+* checking whether package 'BiocBigGraph' can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... NOTE
+Packages in Depends field not imported from:
+  'SummarizedExperiment' 'methods' 'reticulate'
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+check_bigg : <anonymous>: no visible global function definition for
+  'import_from_path'
+disc_matrix: no visible global function definition for 'quantile'
+docol: no visible global function definition for 'assayNames'
+docol: no visible global function definition for 'assay'
+make_triples: no visible global function definition for 'write.table'
+sce_to_triples: no visible global function definition for 'assayNames'
+sce_to_triples: no visible global function definition for 'assay'
+sce_to_triples: no visible global function definition for 'assays'
+sce_to_triples: no visible global function definition for 'assays<-'
+Undefined global functions or variables:
+  assay assayNames assays assays<- import_from_path quantile
+  write.table
+Consider adding
+  importFrom("stats", "quantile")
+  importFrom("utils", "write.table")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in Rd file 'docol.Rd'
+  'sce' 'co' 'colname' 'assayname'
 
-The suggested packages are required for a complete check.
-Checking can be attempted without them by setting the environment
-variable _R_CHECK_FORCE_SUGGESTS_ to a false value.
-
-See section 'The DESCRIPTION file' in the 'Writing R Extensions'
-manual.
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter 'Writing R documentation files' in the 'Writing R
+Extensions' manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in Makefiles ... OK
+* checking for GNU extensions in Makefiles ... WARNING
+Found the following file(s) containing GNU extensions:
+  node_modules/delayed-stream/Makefile
+Portable Makefiles do not use GNU extensions such as +=, :=, $(shell),
+$(wildcard), ifeq ... endif, .NOTPARALLEL See section 'Writing portable
+packages' in the 'Writing R Extensions' manual.
+* checking include directives in Makefiles ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                 user system elapsed
+sce_to_triples 38.486  0.968  40.731
+* checking for unstated dependencies in 'tests' ... WARNING
+'library' or 'require' call not declared from: 'testthat'
+* checking tests ...
+  Running 'test.R'
+ OK
+* checking PDF version of manual ... OK
 * DONE
 
-Status: 1 ERROR
+Status: 3 WARNINGs, 4 NOTEs
 See
   '/home/runner/work/BiocBigGraph/BiocBigGraph.Rcheck/00check.log'
 for details.
+
 
