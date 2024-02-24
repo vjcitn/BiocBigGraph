@@ -1,0 +1,472 @@
+* checking for file 'BiocBigGraph/DESCRIPTION' ... OK
+* preparing 'BiocBigGraph':
+* checking DESCRIPTION meta-information ... OK
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* building 'BiocBigGraph_0.0.1.tar.gz'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/index.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/index.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/AbortError.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/AbortError.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/index.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/types/src/tsdoc-metadata.json'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/credentials/basicAuthenticationCredentials.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/credentials/basicAuthenticationCredentials.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/bearerTokenAuthenticationPolicy.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/disableResponseDecompressionPolicy.browser.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/disableResponseDecompressionPolicy.browser.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/disableResponseDecompressionPolicy.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/disableResponseDecompressionPolicy.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/generateClientRequestIdPolicy.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/dist-esm/src/policies/msRestUserAgentPolicy.browser.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/3.1/src/credentials/basicAuthenticationCredentials.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/3.1/src/policies/bearerTokenAuthenticationPolicy.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/3.1/src/policies/disableResponseDecompressionPolicy.browser.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/3.1/src/policies/disableResponseDecompressionPolicy.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/credentials/accessTokenRefresher.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/credentials/basicAuthenticationCredentials.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/credentials/basicAuthenticationCredentials.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/credentials/serviceClientCredentials.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/credentials/serviceClientCredentials.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/bearerTokenAuthenticationPolicy.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/bearerTokenAuthenticationPolicy.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/disableResponseDecompressionPolicy.browser.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/disableResponseDecompressionPolicy.browser.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/disableResponseDecompressionPolicy.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/disableResponseDecompressionPolicy.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/generateClientRequestIdPolicy.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/generateClientRequestIdPolicy.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/msRestUserAgentPolicy.browser.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/msRestUserAgentPolicy.browser.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/msRestUserAgentPolicy.native.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-http/types/latest/src/policies/msRestUserAgentPolicy.native.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/dist-esm/src/index.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/AbortError.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/AbortError.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/index.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-lro/node_modules/@azure/abort-controller/types/src/tsdoc-metadata.json'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/AbortSignalLike.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/index.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/dist-esm/src/index.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/AbortError.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/AbortError.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/AbortSignalLike.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/index.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/core-util/node_modules/@azure/abort-controller/types/src/tsdoc-metadata.json'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/ms-rest-js/es/lib/credentials/azureIdentityTokenCredentialAdapter.d.ts'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/ms-rest-js/es/lib/credentials/azureIdentityTokenCredentialAdapter.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/ms-rest-js/es/lib/credentials/azureIdentityTokenCredentialAdapter.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/ms-rest-js/es/lib/credentials/azureIdentityTokenCredentialAdapter.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/ms-rest-js/es/lib/credentials/basicAuthenticationCredentials.d.ts.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/ms-rest-js/node_modules/tslib/test/validateModuleExportsMatchCommonJS/'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/ms-rest-js/node_modules/tslib/test/validateModuleExportsMatchCommonJS/index.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/ms-rest-js/node_modules/tslib/test/validateModuleExportsMatchCommonJS/package.json'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/BlobDownloadResponse.browser.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/BlobDownloadResponse.browser.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/BlobQueryResponse.browser.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/StorageBrowserPolicyFactory.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/StorageBrowserPolicyFactory.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/StorageRetryPolicyFactory.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/TelemetryPolicyFactory.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/AnonymousCredential.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/AnonymousCredential.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/Credential.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/StorageSharedKeyCredential.browser.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/StorageSharedKeyCredential.browser.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/StorageSharedKeyCredential.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/StorageSharedKeyCredential.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/UserDelegationKeyCredential.browser.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/UserDelegationKeyCredential.browser.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/UserDelegationKeyCredential.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/credentials/UserDelegationKeyCredential.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/index.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/index.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/mappers.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/mappers.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/parameters.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/models/parameters.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/appendBlob.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/appendBlob.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/blob.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/blob.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/blockBlob.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/blockBlob.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/container.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/container.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/index.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/index.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/pageBlob.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/pageBlob.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/service.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/operations/service.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/storageClient.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/storageClient.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/storageClientContext.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/generated/src/storageClientContext.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/AnonymousCredentialPolicy.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/AnonymousCredentialPolicy.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/CredentialPolicy.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageBearerTokenChallengeAuthenticationPolicy.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageBearerTokenChallengeAuthenticationPolicy.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageBrowserPolicy.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageBrowserPolicy.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageRetryPolicy.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageRetryPolicy.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageSharedKeyCredentialPolicy.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/StorageSharedKeyCredentialPolicy.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/policies/TelemetryPolicy.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/pollers/BlobStartCopyFromUrlPoller.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/pollers/BlobStartCopyFromUrlPoller.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASPermissions.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASResourceTypes.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASResourceTypes.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASServices.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASSignatureValues.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/AccountSASSignatureValues.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/BlobSASPermissions.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/BlobSASSignatureValues.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/BlobSASSignatureValues.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/ContainerSASPermissions.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/ContainerSASPermissions.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/sas/SASQueryParameters.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/utils/BlobQuickQueryStream.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/utils/BlobQuickQueryStream.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/utils/RetriableReadableStream.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-blob/src/utils/RetriableReadableStream.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-common/src/BufferScheduler.browser.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/AvroConstants.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/AvroReadableFromBlob.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/AvroReadableFromBlob.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/AvroReadableFromStream.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/AvroReadableFromStream.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/index.browser.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/utils/utils.common.js'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@azure/storage-blob/dist-esm/storage-internal-avro/src/utils/utils.common.js.map'
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  'BiocBigGraph/node_modules/@opentelemetry/api/build/esnext/trace/internal/tracestate-validators.js.map'
+
