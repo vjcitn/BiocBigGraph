@@ -96,7 +96,7 @@ jobs:
           cd ${{github.workspace}}/..
           export R_LIBS_USER=${{steps.common.outputs.librarydir}}
           BBS_R_PATH=$(echo /home/biocbuild/bbs-*-bioc/R) # next line interposed vjc to get dependencies 2024.02.19
-          $BBS_R_PATH/bin/Rscript -e 'BiocManager::install("${{steps.common.outputs.pkg}}", lib="${{steps.common.outputs.librarydir}}", Ncpus=2, dependencies=TRUE, force=TRUE, type="source")'
+          $BBS_R_PATH/bin/Rscript -e 'BiocManager::install("vjcitn/${{steps.common.outputs.pkg}}", lib="${{steps.common.outputs.librarydir}}", Ncpus=2, dependencies=TRUE, force=TRUE, type="source")'
           $BBS_R_PATH/bin/R CMD INSTALL -l ${{steps.common.outputs.librarydir}} ${{steps.common.outputs.pkg}} &> ${{steps.common.outputs.logdir}}/${{steps.common.outputs.pkg}}-install.log
           cat ${{steps.common.outputs.logdir}}/${{steps.common.outputs.pkg}}-install.log
 
