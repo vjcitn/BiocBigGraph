@@ -1,0 +1,2 @@
+ERROR: dependencies 'reticulate', 'SingleCellExperiment', 'basilisk', 'scran' are not available for package 'BiocBigGraph'
+* removing '/tmp/library/BiocBigGraph'
