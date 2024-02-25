@@ -272,7 +272,7 @@ set_config = function(...) {
 #' p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
 #' assay(p3k) = as.matrix(assay(p3k)) # dense for now
 #' p3k = scuttle::logNormCounts(p3k)
-#' co = CG_embed_sce(p3k)
+#' co = CG_embed_sce(p3k, dynamic_relations=FALSE)
 #' co
 #' @export
 CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5, 
@@ -305,6 +305,8 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
      if (confin$bucket_order_string != "INSIDE_OUT")
           stop("configure bucket_order_string unrecognized")
      confin$bucket_order = conf$BucketOrder$INSIDE_OUT
+     badind = which(names(confin) == "bucket_order_string")
+     confin = confin[-badind]
 
 #
 # create entity schemas for cells and genes
@@ -342,8 +344,8 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
     edge_paths = file.path(workdir, c("train", "validate", "test"))
     checkpoint_path = file.path(workdir, c("chkpt"))
 
-    confargs = c(entities = ents, relations = rels, entity_path = entity_path,
-     edge_paths = edge_paths, checkpoint_path = checkpoint_path, confin)
+    confargs = c(entities = ents, relations = r_to_py(rels), entity_path = entity_path,
+     edge_paths = r_to_py(edge_paths), checkpoint_path = checkpoint_path, confin)
 #
 # call the ConfigSchema method
 #
