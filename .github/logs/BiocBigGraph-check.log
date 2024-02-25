@@ -269,7 +269,7 @@ packages' in the 'Writing R Extensions' manual.
 * checking examples ... OK
 Examples with CPU (user + system) or elapsed time > 5s
                  user system elapsed
-sce_to_triples 38.486  0.968  40.731
+sce_to_triples 40.577  1.184  42.727
 * checking for unstated dependencies in 'tests' ... WARNING
 'library' or 'require' call not declared from: 'testthat'
 * checking tests ...
