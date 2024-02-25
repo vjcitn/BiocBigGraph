@@ -6,6 +6,12 @@
 \usage{
 set_config(...)
 }
+\arguments{
+\item{\dots}{named arguments to override elements of \code{config_constants}}
+}
+\value{
+instance of 'pbgconf'
+}
 \description{
 set configuration schema parameters
 }

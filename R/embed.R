@@ -11,7 +11,7 @@
 #' @param regularizer character(1) defaults to N3
 #' @param init_path defaults to NULL
 #' @param checkpoint_preservation_interval NULL(1) defaults to NULL
-#' @param num_epochs integer(1) defaults to 50
+#' @param num_epochs integer(1) defaults to 5
 #' @param num_edge_chunks defaults to NULL
 #' @param max_edges_per_chunk integer(1) defaults to 1000000000
 #' @param bucket_order_string character(1) defaults to INSIDE_OUT
@@ -54,7 +54,7 @@ config_constants = function(
       regularizer='N3',
       init_path=NULL, 
       checkpoint_preservation_interval=NULL, 
-      num_epochs=50L,
+      num_epochs=5L,
       num_edge_chunks=NULL, 
       max_edges_per_chunk=1000000000L, 
       bucket_order_string = "INSIDE_OUT",
@@ -137,13 +137,15 @@ cat(sprintf("instance of pbgconf with %d elements.\n", length(x)))
 }
 
 # only for use within a basiliskEnv
-setup_config_schema = function( pbgref, entities, relations, entity_path,
- edge_paths, checkpoint_path,
+# excludes entities, relations, entity_path,
+# excludes edge_paths, checkpoint_path, which are computed
+setup_config_schema_optionals = function( 
  dimension=400L, init_scale=0.001, max_norm=NULL, global_emb=FALSE, comparator='dot',
  bias=FALSE, loss_fn='softmax', margin=0.1, regularization_coef=0.001, regularizer='N3',
  init_path=NULL, checkpoint_preservation_interval=NULL, num_epochs=50L,
  num_edge_chunks=NULL, max_edges_per_chunk=1000000000L, 
- bucket_order=pbgref$config$BucketOrder$INSIDE_OUT,
+ bucket_order=NULL,
+ bucket_order_string="INSIDE_OUT", # must be dropped
  workers=NULL, batch_size=1000L, num_batch_negs=50L, num_uniform_negs=1000L,
  disable_lhs_negs=FALSE, disable_rhs_negs=FALSE, lr=0.1, relation_lr=NULL,
  eval_fraction=0.0, eval_num_batch_negs=1000L, eval_num_uniform_negs=1000L, background_io=FALSE,
@@ -151,12 +153,7 @@ setup_config_schema = function( pbgref, entities, relations, entity_path,
  num_partition_servers=-1L, distributed_init_method=NULL, distributed_tree_init_order=TRUE, num_gpus=0L,
  num_groups_for_partition_server=16L, num_groups_per_sharded_partition_server=1L, 
  partition_shard_size=250L, half_precision=FALSE) {
- pbgref$config$ConfigSchema(
-  entities = entities, 
-  relations=relations,
-  entity_path = entity_path, 
-  edge_paths = edge_paths, 
-  checkpoint_path = checkpoint_path,
+ list(
   dimension=dimension,
   init_scale=init_scale,
   global_emb=global_emb,
@@ -169,6 +166,7 @@ setup_config_schema = function( pbgref, entities, relations, entity_path,
   num_epochs=num_epochs,
   max_edges_per_chunk=max_edges_per_chunk,
   bucket_order = bucket_order,
+  bucket_order_string = bucket_order_string,
   batch_size=batch_size,
   num_batch_negs=num_batch_negs,
   num_uniform_negs=num_uniform_negs,
@@ -242,20 +240,11 @@ setup_config_schema = function( pbgref, entities, relations, entity_path,
 # half_precision: bool = False) -> None
 #
 
-#' produce EntitySchema, only for use within BasiliskEnvironment
-#' @param num_partitions integer(1)
-#' @param featurized logical(1)
-#' @param dimension NULL Or integer(1)
-#' @param pbgref instance of torchbiggraph module
-#' @examples
-#' pbg = reticulate::import("torchbiggraph")
-#' EntitySchema(pbgref = pbg)
-make_entity_schema = function(num_partitions = 1L,
-  featurized=FALSE, dimension=NULL, pbgref)
- pbgref$config$EntitySchema(num_partitions = num_partitions,
-   featurized=featurized, dimension=dimension)
 
 #' set configuration schema parameters
+#' @param \dots named arguments to override elements of `config_constants`
+#' @return instance of 'pbgconf'
+#' @export
 set_config = function(...) {
  defcon = config_constants()
  inargs = list(...)
@@ -268,14 +257,181 @@ set_config = function(...) {
 }
 
 
-CG_embed_sce = function(sce, workdir, N_GENES, N_BINS, N_EPOCHS, BATCH_SIZE, ...) {
+#' complete processing of SCE
+#' @param sce SingleCellExperiment instance ready for conversion with 'sce_to_triples'
+#' @param workdir location of temporary storage, defaults to tempdir()
+#' @param N_GENES numeric(1) passed to 'sce_to_triples'
+#' @param N_BINS numeric(1) passed to 'sce_to_triples' for discretization
+#' @param N_PARTITIONS integer(1) for PytorchBigGraph configuration
+#' @param FEATURIZED logical(1) for PytorchBigGraph configuration
+#' @param entity_path character(1) subfolder of tempdir for entity recording
+#' @param \dots passed directly to `set_config`
+#' @note Any changes to configuration can be passed via ....  For example,
+#' `num_epochs` defaults to 5L, pass directly in this function.
+#' @examples
+#' p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
+#' assay(p3k) = as.matrix(assay(p3k)) # dense for now
+#' p3k = scuttle::logNormCounts(p3k)
+#' co = CG_embed_sce(p3k)
+#' co
+#' @export
+CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5, 
+   N_PARTITIONS=1L, FEATURIZED=FALSE, entity_path="ents",
+    ...) {
   N_GENES = as.integer(N_GENES)
   N_BINS = as.integer(N_BINS)
-  N_EPOCHS = as.integer(N_EPOCHS)
-  BATCH_SIZE = as.integer(BATCH_SIZE)
   
   tsvtarget = paste0(tempfile(tmpdir=workdir), ".tsv")
-  sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS)
+#  sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS)
 
+  proc = basilisk::basiliskStart(bsklenv)
+  on.exit(basilisk::basiliskStop(proc))
+  basilisk::basiliskRun(proc, function(sce, workdir, N_PARTITIONS, FEATURIZED,
+       entity_path, ... ) {
+#
+# get python modules direct from included source
+# as of 25.02.2024 there is no accommodation of GPU which requires
+# C++ compilation of some code in fbsource
+#
+   fbloc = system.file("python", "fbsource", package="BiocBigGraph")
+   tor = import_from_path("torchbiggraph", path=fbloc)
+   conf = import_from_path("torchbiggraph.config", path=fbloc)
+   imps = import_from_path("torchbiggraph.converters.importers", path=fbloc)
+   
+#
+# get configuration basics, to be used later
+#
+     confin = setup_config_schema_optionals(...)
+     if (confin$bucket_order_string != "INSIDE_OUT")
+          stop("configure bucket_order_string unrecognized")
+     confin$bucket_order = conf$BucketOrder$INSIDE_OUT
 
+#
+# create entity schemas for cells and genes
+#
+   entC = conf$EntitySchema(num_partitions = N_PARTITIONS, 
+            featurized=FEATURIZED, dimension=confin$dimension)
+   entG = conf$EntitySchema(num_partitions = N_PARTITIONS, 
+            featurized=FEATURIZED, dimension=confin$dimension)
+   ents = reticulate::dict(C = entC, G = entG)
+
+#
+# set up weights which define 'relations' or edge types in graph  
+# this is dictated by number of bins into which expression values
+# were mapped
+#
+   group_levels = seq_len(N_BINS)
+   group_tags = paste0("r", group_levels - 1L)
+   wts = 1.0*group_levels # make float
+   rels = lapply( group_levels, function(x) 
+    conf$RelationSchema(
+      name=group_tags[x],
+      lhs='C',
+      rhs='G',
+      weight=wts[x],
+      operator='none',
+      all_negs=FALSE
+    ))
+
+# 
+# build configuration schema
+#
+# set up args
+#
+    entity_path = file.path(workdir, entity_path)
+    edge_paths = file.path(workdir, c("train", "validate", "test"))
+    checkpoint_path = file.path(workdir, c("chkpt"))
+
+    confargs = c(entities = ents, relations = rels, entity_path = entity_path,
+     edge_paths = edge_paths, checkpoint_path = checkpoint_path, confin)
+#
+# call the ConfigSchema method
+#
+    confsch = do.call(conf$ConfigSchema, confargs)
+    confsch
+  }, sce=sce, workdir=workdir, N_PARTITIONS=N_PARTITIONS, FEATURIZED=FEATURIZED, 
+         entity_path = entity_path, ...)
 }
+
+#' no bas
+#' @examples
+#' p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
+#' co = simple_conf(p3k, dynamic_relations=FALSE)
+#' co
+#' @export
+simple_conf = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5, 
+   N_PARTITIONS=1L, FEATURIZED=FALSE, entity_path="ents",
+    ...) {
+  N_GENES = as.integer(N_GENES)
+  N_BINS = as.integer(N_BINS)
+  
+  tsvtarget = paste0(tempfile(tmpdir=workdir), ".tsv")
+#  sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS)
+
+#  basilisk::basiliskRun(proc, function(sce, workdir, N_PARTITIONS, FEATURIZED,
+#       entity_path, ... ) {
+#
+# get python modules direct from included source
+# as of 25.02.2024 there is no accommodation of GPU which requires
+# C++ compilation of some code in fbsource
+#
+   fbloc = system.file("python", "fbsource", package="BiocBigGraph")
+   tor = import_from_path("torchbiggraph", path=fbloc)
+   conf = import_from_path("torchbiggraph.config", path=fbloc)
+   imps = import_from_path("torchbiggraph.converters.importers", path=fbloc)
+   
+#
+# get configuration basics, to be used later
+#
+     confin = setup_config_schema_optionals(...)
+     if (confin$bucket_order_string != "INSIDE_OUT")
+          stop("configure bucket_order_string unrecognized")
+     confin$bucket_order = conf$BucketOrder$INSIDE_OUT
+     badind = which(names(confin) == "bucket_order_string")
+     confin = confin[-badind]
+
+#
+# create entity schemas for cells and genes
+#
+   entC = conf$EntitySchema(num_partitions = N_PARTITIONS, 
+            featurized=FEATURIZED, dimension=confin$dimension)
+   entG = conf$EntitySchema(num_partitions = N_PARTITIONS, 
+            featurized=FEATURIZED, dimension=confin$dimension)
+   ents = reticulate::dict(C = entC, G = entG)
+
+#
+# set up weights which define 'relations' or edge types in graph  
+# this is dictated by number of bins into which expression values
+# were mapped
+#
+   group_levels = seq_len(N_BINS)
+   group_tags = paste0("r", group_levels - 1L)
+   wts = 1.0*group_levels # make float
+   rels = lapply( group_levels, function(x) 
+    conf$RelationSchema(
+      name=group_tags[x],
+      lhs='C',
+      rhs='G',
+      weight=wts[x],
+      operator='none',
+      all_negs=FALSE
+    ))
+
+# 
+# build configuration schema
+#
+# set up args
+#
+    entity_path = file.path(workdir, entity_path)
+    edge_paths = file.path(workdir, c("train", "validate", "test"))
+    checkpoint_path = file.path(workdir, c("chkpt"))
+
+    confargs = c(entities = ents, relations = r_to_py(rels), entity_path = entity_path,
+     edge_paths = r_to_py(edge_paths), checkpoint_path = checkpoint_path, confin)
+#
+# call the ConfigSchema method
+#
+    confsch = do.call(conf$ConfigSchema, confargs)
+    confsch
+  }#, sce=sce, workdir=workdir, N_PARTITIONS=N_PARTITIONS, FEATURIZED=FEATURIZED, 
+#         entity_path = entity_path, ...)

@@ -17,7 +17,7 @@ config_constants(
   regularizer = "N3",
   init_path = NULL,
   checkpoint_preservation_interval = NULL,
-  num_epochs = 50L,
+  num_epochs = 5L,
   num_edge_chunks = NULL,
   max_edges_per_chunk = 1000000000L,
   bucket_order_string = "INSIDE_OUT",
@@ -72,7 +72,7 @@ config_constants(
 
 \item{checkpoint_preservation_interval}{NULL(1) defaults to NULL}
 
-\item{num_epochs}{integer(1) defaults to 50}
+\item{num_epochs}{integer(1) defaults to 5}
 
 \item{num_edge_chunks}{defaults to NULL}
 
