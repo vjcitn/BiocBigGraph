@@ -128,6 +128,9 @@ config_constants(
 
 \item{half_precision}{logical(1) defaults to FALSE}
 }
+\value{
+S3class pbgconf which inherits from "list"
+}
 \description{
 produce a list with defaults or substitutes for most configuration parameters
 }

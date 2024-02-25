@@ -39,6 +39,7 @@
 #' @param num_groups_per_sharded_partition_server integer(1) defaults to 1
 #' @param partition_shard_size integer(1) defaults to 250
 #' @param half_precision logical(1) defaults to FALSE
+#' @return S3class pbgconf which inherits from "list"
 #' @export
 config_constants = function(
       dimension=400L, 
@@ -81,7 +82,7 @@ config_constants = function(
       num_groups_per_sharded_partition_server=1L, 
       partition_shard_size=250L, 
       half_precision=FALSE) {
-list(
+ans = list(
  dimension = dimension,
  init_scale = init_scale,
  max_norm = max_norm,
@@ -123,6 +124,16 @@ list(
  partition_shard_size = partition_shard_size,
  half_precision = half_precision
 )
+class(ans) = c("pbgconf", "list")
+ans
+}
+
+#' printer for long configuration object
+#' @param x inherits from "pbgconf"
+#' @param \dots not used
+#' @export
+print.pbgconf = function(x, ...) {
+cat(sprintf("instance of pbgconf with %d elements.\n", length(x)))
 }
 
 # only for use within a basiliskEnv
@@ -231,6 +242,30 @@ setup_config_schema = function( pbgref, entities, relations, entity_path,
 # half_precision: bool = False) -> None
 #
 
+#' produce EntitySchema, only for use within BasiliskEnvironment
+#' @param num_partitions integer(1)
+#' @param featurized logical(1)
+#' @param dimension NULL Or integer(1)
+#' @param pbgref instance of torchbiggraph module
+#' @examples
+#' pbg = reticulate::import("torchbiggraph")
+#' EntitySchema(pbgref = pbg)
+make_entity_schema = function(num_partitions = 1L,
+  featurized=FALSE, dimension=NULL, pbgref)
+ pbgref$config$EntitySchema(num_partitions = num_partitions,
+   featurized=featurized, dimension=dimension)
+
+#' set configuration schema parameters
+set_config = function(...) {
+ defcon = config_constants()
+ inargs = list(...)
+ bad = setdiff(names(inargs), names(defcon))
+ if (length(bad)>0) message("set_config had some arguments not known to 'config_constants' that will be ignored")
+ tomod = intersect(names(inargs), names(defcon))
+ ans = lapply(tomod, function(x) defcon[[x]] = inargs[[x]])
+ class(ans) = class(defcon)
+ ans
+}
 
 
 CG_embed_sce = function(sce, workdir, N_GENES, N_BINS, N_EPOCHS, BATCH_SIZE, ...) {
@@ -241,4 +276,6 @@ CG_embed_sce = function(sce, workdir, N_GENES, N_BINS, N_EPOCHS, BATCH_SIZE, ...
   
   tsvtarget = paste0(tempfile(tmpdir=workdir), ".tsv")
   sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS)
+
+
 }
