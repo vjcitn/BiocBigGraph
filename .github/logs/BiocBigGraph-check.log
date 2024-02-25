@@ -1,5 +1,5 @@
 * using log directory '/home/runner/work/BiocBigGraph/BiocBigGraph.Rcheck'
-* using R Under development (unstable) (2024-02-21 r85967)
+* using R Under development (unstable) (2024-02-25 r85985)
 * using platform: x86_64-pc-linux-gnu
 * R was compiled by
     gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
@@ -251,6 +251,9 @@ to your NAMESPACE file.
 Undocumented arguments in Rd file 'docol.Rd'
   'sce' 'co' 'colname' 'assayname'
 
+Undocumented arguments in Rd file 'set_config.Rd'
+  '...'
+
 Functions with \usage entries need to have the appropriate \alias
 entries, and all their arguments documented.
 The \usage entries must correspond to syntactically valid R code.
@@ -266,10 +269,23 @@ Portable Makefiles do not use GNU extensions such as +=, :=, $(shell),
 $(wildcard), ifeq ... endif, .NOTPARALLEL See section 'Writing portable
 packages' in the 'Writing R Extensions' manual.
 * checking include directives in Makefiles ... OK
-* checking examples ... OK
-Examples with CPU (user + system) or elapsed time > 5s
-                 user system elapsed
-sce_to_triples 40.577  1.184  42.727
+* checking examples ... ERROR
+Running examples in 'BiocBigGraph-Ex.R' failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: make_entity_schema
+> ### Title: produce EntitySchema, only for use within BasiliskEnvironment
+> ### Aliases: make_entity_schema
+> 
+> ### ** Examples
+> 
+> pbg = reticulate::import("torchbiggraph")
+Error in py_module_import(module, convert = convert) : 
+  ModuleNotFoundError: No module named 'torchbiggraph'
+Run `reticulate::py_last_error()` for details.
+Calls: <Anonymous> -> py_module_import
+Execution halted
 * checking for unstated dependencies in 'tests' ... WARNING
 'library' or 'require' call not declared from: 'testthat'
 * checking tests ...
@@ -278,9 +294,8 @@ sce_to_triples 40.577  1.184  42.727
 * checking PDF version of manual ... OK
 * DONE
 
-Status: 3 WARNINGs, 4 NOTEs
+Status: 1 ERROR, 3 WARNINGs, 4 NOTEs
 See
   '/home/runner/work/BiocBigGraph/BiocBigGraph.Rcheck/00check.log'
 for details.
-
 
