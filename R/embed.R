@@ -272,7 +272,7 @@ set_config = function(...) {
 #' p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
 #' assay(p3k) = as.matrix(assay(p3k)) # dense for now
 #' p3k = scuttle::logNormCounts(p3k)
-#' co = CG_embed_sce(p3k, dynamic_relations=FALSE)
+#' co = CG_embed_sce(p3k, N_GENES=50, dynamic_relations=FALSE)
 #' co
 #' @export
 CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5, 
@@ -282,7 +282,7 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
   N_BINS = as.integer(N_BINS)
   
   tsvtarget = paste0(tempfile(tmpdir=workdir), ".tsv")
-#  sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS)
+  sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS)
 
   proc = basilisk::basiliskStart(bsklenv)
   on.exit(basilisk::basiliskStop(proc))
@@ -297,6 +297,10 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
    tor = import_from_path("torchbiggraph", path=fbloc)
    conf = import_from_path("torchbiggraph.config", path=fbloc)
    imps = import_from_path("torchbiggraph.converters.importers", path=fbloc)
+#
+# assume pathlib is available
+#
+   palib = import("pathlib")
    
 #
 # get configuration basics, to be used later
@@ -341,99 +345,54 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
 # set up args
 #
     entity_path = file.path(workdir, entity_path)
-    edge_paths = file.path(workdir, c("train", "validate", "test"))
+    edge_paths = rep(" ", 3)
+    edge_paths[1] = tsvtarget
+    file.create(file.path(workdir, "validate"))
+    edge_paths[2] = file.path(workdir, "validate")
+    file.create(file.path(workdir, "test"))
+    edge_paths[3] = file.path(workdir, "test")
+    edge_paths_out = file.path(workdir, c("train_out", "validate_out", "test_out"))
+#    sapply(edge_paths_out, file.create)
     checkpoint_path = file.path(workdir, c("chkpt"))
 
     confargs = c(entities = ents, relations = r_to_py(rels), entity_path = entity_path,
-     edge_paths = r_to_py(edge_paths), checkpoint_path = checkpoint_path, confin)
+     edge_paths = r_to_py(edge_paths_out), checkpoint_path = checkpoint_path, confin)
 #
 # call the ConfigSchema method
 #
     confsch = do.call(conf$ConfigSchema, confargs)
+#
+# convert TSV for triples into hdf5
+#
+# python API has mix of string and Path for out and in
+# convert_input_data(
+#     entity_configs: Dict[str, 
+#               torchbiggraph.config.EntitySchema], 
+#     relation_configs: List[torchbiggraph.config.RelationSchema], 
+#     entity_path: str, 
+#     edge_paths_out: List[str], 
+#     edge_paths_in: List[pathlib.Path], 
+#     edgelist_reader: torchbiggraph.converters.importers.EdgelistReader, 
+#     entity_min_count: int = 1, 
+#     relation_type_min_count: int = 1, i
+#     dynamic_relations: bool = False) -> None
+# 
+  trpaths = reticulate::r_to_py(lapply(unname(edge_paths),
+      palib$Path))
+  imps$convert_input_data(
+    confsch$entities,
+    confsch$relations,
+    confsch$entity_path,
+    confsch$edge_paths,
+    trpaths,
+    imps$TSVEdgelistReader(lhs_col=0L, rhs_col=2L, rel_col=1L),
+    dynamic_relations = confsch$dynamic_relations)
+#
+# OK?
+#
     confsch
+
   }, sce=sce, workdir=workdir, N_PARTITIONS=N_PARTITIONS, FEATURIZED=FEATURIZED, 
          entity_path = entity_path, ...)
 }
 
-#' no bas
-#' @examples
-#' p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
-#' co = simple_conf(p3k, dynamic_relations=FALSE)
-#' co
-#' @export
-simple_conf = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5, 
-   N_PARTITIONS=1L, FEATURIZED=FALSE, entity_path="ents",
-    ...) {
-  N_GENES = as.integer(N_GENES)
-  N_BINS = as.integer(N_BINS)
-  
-  tsvtarget = paste0(tempfile(tmpdir=workdir), ".tsv")
-#  sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS)
-
-#  basilisk::basiliskRun(proc, function(sce, workdir, N_PARTITIONS, FEATURIZED,
-#       entity_path, ... ) {
-#
-# get python modules direct from included source
-# as of 25.02.2024 there is no accommodation of GPU which requires
-# C++ compilation of some code in fbsource
-#
-   fbloc = system.file("python", "fbsource", package="BiocBigGraph")
-   tor = import_from_path("torchbiggraph", path=fbloc)
-   conf = import_from_path("torchbiggraph.config", path=fbloc)
-   imps = import_from_path("torchbiggraph.converters.importers", path=fbloc)
-   
-#
-# get configuration basics, to be used later
-#
-     confin = setup_config_schema_optionals(...)
-     if (confin$bucket_order_string != "INSIDE_OUT")
-          stop("configure bucket_order_string unrecognized")
-     confin$bucket_order = conf$BucketOrder$INSIDE_OUT
-     badind = which(names(confin) == "bucket_order_string")
-     confin = confin[-badind]
-
-#
-# create entity schemas for cells and genes
-#
-   entC = conf$EntitySchema(num_partitions = N_PARTITIONS, 
-            featurized=FEATURIZED, dimension=confin$dimension)
-   entG = conf$EntitySchema(num_partitions = N_PARTITIONS, 
-            featurized=FEATURIZED, dimension=confin$dimension)
-   ents = reticulate::dict(C = entC, G = entG)
-
-#
-# set up weights which define 'relations' or edge types in graph  
-# this is dictated by number of bins into which expression values
-# were mapped
-#
-   group_levels = seq_len(N_BINS)
-   group_tags = paste0("r", group_levels - 1L)
-   wts = 1.0*group_levels # make float
-   rels = lapply( group_levels, function(x) 
-    conf$RelationSchema(
-      name=group_tags[x],
-      lhs='C',
-      rhs='G',
-      weight=wts[x],
-      operator='none',
-      all_negs=FALSE
-    ))
-
-# 
-# build configuration schema
-#
-# set up args
-#
-    entity_path = file.path(workdir, entity_path)
-    edge_paths = file.path(workdir, c("train", "validate", "test"))
-    checkpoint_path = file.path(workdir, c("chkpt"))
-
-    confargs = c(entities = ents, relations = r_to_py(rels), entity_path = entity_path,
-     edge_paths = r_to_py(edge_paths), checkpoint_path = checkpoint_path, confin)
-#
-# call the ConfigSchema method
-#
-    confsch = do.call(conf$ConfigSchema, confargs)
-    confsch
-  }#, sce=sce, workdir=workdir, N_PARTITIONS=N_PARTITIONS, FEATURIZED=FEATURIZED, 
-#         entity_path = entity_path, ...)
