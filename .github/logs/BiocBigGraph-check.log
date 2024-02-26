@@ -225,6 +225,14 @@ Packages in Depends field not imported from:
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
 * checking R code for possible problems ... NOTE
+CG_embed_sce : <anonymous>: no visible global function definition for
+  'import_from_path'
+CG_embed_sce : <anonymous>: no visible global function definition for
+  'import'
+CG_embed_sce : <anonymous>: no visible global function definition for
+  'r_to_py'
+CG_embed_sce : <anonymous>: no visible binding for global variable
+  'pbg'
 check_bigg : <anonymous>: no visible global function definition for
   'import_from_path'
 disc_matrix: no visible global function definition for 'quantile'
@@ -235,9 +243,13 @@ sce_to_triples: no visible global function definition for 'assayNames'
 sce_to_triples: no visible global function definition for 'assay'
 sce_to_triples: no visible global function definition for 'assays'
 sce_to_triples: no visible global function definition for 'assays<-'
+simple_conf: no visible global function definition for
+  'import_from_path'
+simple_conf: no visible global function definition for 'r_to_py'
+simple_conf: no visible binding for global variable 'palib'
 Undefined global functions or variables:
-  assay assayNames assays assays<- import_from_path quantile
-  write.table
+  assay assayNames assays assays<- import import_from_path palib pbg
+  quantile r_to_py write.table
 Consider adding
   importFrom("stats", "quantile")
   importFrom("utils", "write.table")
@@ -251,8 +263,9 @@ to your NAMESPACE file.
 Undocumented arguments in Rd file 'docol.Rd'
   'sce' 'co' 'colname' 'assayname'
 
-Undocumented arguments in Rd file 'set_config.Rd'
-  '...'
+Undocumented arguments in Rd file 'simple_conf.Rd'
+  'sce' 'workdir' 'N_GENES' 'N_BINS' 'N_PARTITIONS' 'FEATURIZED'
+  'entity_path' '...'
 
 Functions with \usage entries need to have the appropriate \alias
 entries, and all their arguments documented.
@@ -274,17 +287,447 @@ Running examples in 'BiocBigGraph-Ex.R' failed
 The error most likely occurred in:
 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: make_entity_schema
-> ### Title: produce EntitySchema, only for use within BasiliskEnvironment
-> ### Aliases: make_entity_schema
+> ### Name: CG_embed_sce
+> ### Title: complete processing of SCE
+> ### Aliases: CG_embed_sce
 > 
 > ### ** Examples
 > 
-> pbg = reticulate::import("torchbiggraph")
+> p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
+see ?TENxPBMCData and browseVignettes('TENxPBMCData') for documentation
+downloading 1 resources
+retrieving 1 resource
+loading from cache
+> assay(p3k) = as.matrix(assay(p3k)) # dense for now
+> p3k = scuttle::logNormCounts(p3k)
+> co = CG_embed_sce(p3k, dynamic_relations=FALSE)
+......................................................trying URL 'https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh'
+Content type 'application/x-sh' length 76607678 bytes (73.1 MB)
+==================================================
+downloaded 73.1 MB
+
+PREFIX=/root/.cache/R/basilisk/1.15.5/0
+Unpacking payload ...
+
+  0%|          | 0/40 [00:00<?, ?it/s]
+Extracting : openssl-1.1.1n-h7f8727e_0.conda:   0%|          | 0/40 [00:00<?, ?it/s]
+Extracting : openssl-1.1.1n-h7f8727e_0.conda:   2%|2         | 1/40 [00:00<00:11,  3.30it/s]
+Extracting : python-3.9.12-h12debd9_0.conda:   2%|2         | 1/40 [00:02<00:11,  3.30it/s] 
+Extracting : python-3.9.12-h12debd9_0.conda:   5%|5         | 2/40 [00:02<00:45,  1.19s/it]
+Extracting : _libgcc_mutex-0.1-main.conda:   5%|5         | 2/40 [00:02<00:45,  1.19s/it]  
+Extracting : xz-5.2.5-h7b6447c_0.conda:   8%|7         | 3/40 [00:02<00:44,  1.19s/it]   
+Extracting : sqlite-3.38.2-hc218d9a_0.conda:  10%|#         | 4/40 [00:02<00:42,  1.19s/it]
+Extracting : pycparser-2.21-pyhd3eb1b0_0.conda:  12%|#2        | 5/40 [00:02<00:41,  1.19s/it]
+Extracting : ca-certificates-2022.3.29-h06a4308_1.conda:  15%|#5        | 6/40 [00:02<00:40,  1.19s/it]
+Extracting : idna-3.3-pyhd3eb1b0_0.conda:  18%|#7        | 7/40 [00:02<00:39,  1.19s/it]               
+Extracting : ncurses-6.3-h7f8727e_2.conda:  20%|##        | 8/40 [00:02<00:38,  1.19s/it]
+Extracting : urllib3-1.26.8-pyhd3eb1b0_0.conda:  22%|##2       | 9/40 [00:02<00:36,  1.19s/it]
+Extracting : libstdcxx-ng-9.3.0-hd4cf53a_17.conda:  25%|##5       | 10/40 [00:02<00:35,  1.19s/it]
+Extracting : six-1.16.0-pyhd3eb1b0_1.conda:  28%|##7       | 11/40 [00:02<00:34,  1.19s/it]       
+Extracting : zlib-1.2.12-h7f8727e_1.conda:  30%|###       | 12/40 [00:02<00:33,  1.19s/it] 
+Extracting : tzdata-2022a-hda174b7_0.conda:  32%|###2      | 13/40 [00:02<00:32,  1.19s/it]
+Extracting : libffi-3.3-he6710b0_2.conda:  35%|###5      | 14/40 [00:02<00:30,  1.19s/it]  
+Extracting : certifi-2021.10.8-py39h06a4308_2.conda:  38%|###7      | 15/40 [00:02<00:29,  1.19s/it]
+Extracting : pysocks-1.7.1-py39h06a4308_0.conda:  40%|####      | 16/40 [00:02<00:28,  1.19s/it]    
+Extracting : ruamel_yaml-0.15.100-py39h27cfd23_0.conda:  42%|####2     | 17/40 [00:02<00:27,  1.19s/it]
+Extracting : wheel-0.37.1-pyhd3eb1b0_0.conda:  45%|####5     | 18/40 [00:02<00:26,  1.19s/it]          
+Extracting : cryptography-36.0.0-py39h9ce1e76_0.conda:  48%|####7     | 19/40 [00:02<00:25,  1.19s/it]
+Extracting : conda-content-trust-0.1.1-pyhd3eb1b0_0.conda:  50%|#####     | 20/40 [00:02<00:23,  1.19s/it]
+Extracting : pyopenssl-22.0.0-pyhd3eb1b0_0.conda:  52%|#####2    | 21/40 [00:02<00:22,  1.19s/it]         
+Extracting : tqdm-4.63.0-pyhd3eb1b0_0.conda:  55%|#####5    | 22/40 [00:02<00:21,  1.19s/it]     
+Extracting : ld_impl_linux-64-2.35.1-h7274673_9.conda:  57%|#####7    | 23/40 [00:02<00:20,  1.19s/it]
+Extracting : conda-package-handling-1.8.1-py39h7f8727e_0.conda:  60%|######    | 24/40 [00:02<00:19,  1.19s/it]
+Extracting : pip-21.2.4-py39h06a4308_0.conda:  62%|######2   | 25/40 [00:02<00:17,  1.19s/it]                  
+Extracting : yaml-0.2.5-h7b6447c_0.conda:  65%|######5   | 26/40 [00:02<00:16,  1.19s/it]    
+Extracting : conda-4.12.0-py39h06a4308_0.conda:  68%|######7   | 27/40 [00:02<00:15,  1.19s/it]
+Extracting : conda-4.12.0-py39h06a4308_0.conda:  70%|#######   | 28/40 [00:02<00:00, 14.61it/s]
+Extracting : setuptools-61.2.0-py39h06a4308_0.conda:  70%|#######   | 28/40 [00:02<00:00, 14.61it/s]
+Extracting : cffi-1.15.0-py39hd667e15_1.conda:  72%|#######2  | 29/40 [00:02<00:00, 14.61it/s]      
+Extracting : charset-normalizer-2.0.4-pyhd3eb1b0_0.conda:  75%|#######5  | 30/40 [00:02<00:00, 14.61it/s]
+Extracting : libgomp-9.3.0-h5101ec6_17.conda:  78%|#######7  | 31/40 [00:02<00:00, 14.61it/s]            
+Extracting : colorama-0.4.4-pyhd3eb1b0_0.conda:  80%|########  | 32/40 [00:02<00:00, 14.61it/s]
+Extracting : readline-8.1.2-h7f8727e_1.conda:  82%|########2 | 33/40 [00:02<00:00, 14.61it/s]  
+Extracting : tk-8.6.11-h1ccaba5_0.conda:  85%|########5 | 34/40 [00:02<00:00, 14.61it/s]     
+Extracting : pycosat-0.6.3-py39h27cfd23_0.conda:  88%|########7 | 35/40 [00:02<00:00, 14.61it/s]
+Extracting : libgcc-ng-9.3.0-h5101ec6_17.conda:  90%|######### | 36/40 [00:02<00:00, 14.61it/s] 
+Extracting : brotlipy-0.7.0-py39h27cfd23_1003.conda:  92%|#########2| 37/40 [00:02<00:00, 14.61it/s]
+Extracting : requests-2.27.1-pyhd3eb1b0_0.conda:  95%|#########5| 38/40 [00:02<00:00, 14.61it/s]    
+Extracting : _openmp_mutex-4.5-1_gnu.tar.bz2:  98%|#########7| 39/40 [00:02<00:00, 14.61it/s]   
+                                                                                             
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /root/.cache/R/basilisk/1.15.5/0
+
+  added / updated specs:
+    - _libgcc_mutex==0.1=main
+    - _openmp_mutex==4.5=1_gnu
+    - brotlipy==0.7.0=py39h27cfd23_1003
+    - ca-certificates==2022.3.29=h06a4308_1
+    - certifi==2021.10.8=py39h06a4308_2
+    - cffi==1.15.0=py39hd667e15_1
+    - charset-normalizer==2.0.4=pyhd3eb1b0_0
+    - colorama==0.4.4=pyhd3eb1b0_0
+    - conda-content-trust==0.1.1=pyhd3eb1b0_0
+    - conda-package-handling==1.8.1=py39h7f8727e_0
+    - conda==4.12.0=py39h06a4308_0
+    - cryptography==36.0.0=py39h9ce1e76_0
+    - idna==3.3=pyhd3eb1b0_0
+    - ld_impl_linux-64==2.35.1=h7274673_9
+    - libffi==3.3=he6710b0_2
+    - libgcc-ng==9.3.0=h5101ec6_17
+    - libgomp==9.3.0=h5101ec6_17
+    - libstdcxx-ng==9.3.0=hd4cf53a_17
+    - ncurses==6.3=h7f8727e_2
+    - openssl==1.1.1n=h7f8727e_0
+    - pip==21.2.4=py39h06a4308_0
+    - pycosat==0.6.3=py39h27cfd23_0
+    - pycparser==2.21=pyhd3eb1b0_0
+    - pyopenssl==22.0.0=pyhd3eb1b0_0
+    - pysocks==1.7.1=py39h06a4308_0
+    - python==3.9.12=h12debd9_0
+    - readline==8.1.2=h7f8727e_1
+    - requests==2.27.1=pyhd3eb1b0_0
+    - ruamel_yaml==0.15.100=py39h27cfd23_0
+    - setuptools==61.2.0=py39h06a4308_0
+    - six==1.16.0=pyhd3eb1b0_1
+    - sqlite==3.38.2=hc218d9a_0
+    - tk==8.6.11=h1ccaba5_0
+    - tqdm==4.63.0=pyhd3eb1b0_0
+    - tzdata==2022a=hda174b7_0
+    - urllib3==1.26.8=pyhd3eb1b0_0
+    - wheel==0.37.1=pyhd3eb1b0_0
+    - xz==5.2.5=h7b6447c_0
+    - yaml==0.2.5=h7b6447c_0
+    - zlib==1.2.12=h7f8727e_1
+
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      pkgs/main/linux-64::_libgcc_mutex-0.1-main
+  _openmp_mutex      pkgs/main/linux-64::_openmp_mutex-4.5-1_gnu
+  brotlipy           pkgs/main/linux-64::brotlipy-0.7.0-py39h27cfd23_1003
+  ca-certificates    pkgs/main/linux-64::ca-certificates-2022.3.29-h06a4308_1
+  certifi            pkgs/main/linux-64::certifi-2021.10.8-py39h06a4308_2
+  cffi               pkgs/main/linux-64::cffi-1.15.0-py39hd667e15_1
+  charset-normalizer pkgs/main/noarch::charset-normalizer-2.0.4-pyhd3eb1b0_0
+  colorama           pkgs/main/noarch::colorama-0.4.4-pyhd3eb1b0_0
+  conda              pkgs/main/linux-64::conda-4.12.0-py39h06a4308_0
+  conda-content-tru~ pkgs/main/noarch::conda-content-trust-0.1.1-pyhd3eb1b0_0
+  conda-package-han~ pkgs/main/linux-64::conda-package-handling-1.8.1-py39h7f8727e_0
+  cryptography       pkgs/main/linux-64::cryptography-36.0.0-py39h9ce1e76_0
+  idna               pkgs/main/noarch::idna-3.3-pyhd3eb1b0_0
+  ld_impl_linux-64   pkgs/main/linux-64::ld_impl_linux-64-2.35.1-h7274673_9
+  libffi             pkgs/main/linux-64::libffi-3.3-he6710b0_2
+  libgcc-ng          pkgs/main/linux-64::libgcc-ng-9.3.0-h5101ec6_17
+  libgomp            pkgs/main/linux-64::libgomp-9.3.0-h5101ec6_17
+  libstdcxx-ng       pkgs/main/linux-64::libstdcxx-ng-9.3.0-hd4cf53a_17
+  ncurses            pkgs/main/linux-64::ncurses-6.3-h7f8727e_2
+  openssl            pkgs/main/linux-64::openssl-1.1.1n-h7f8727e_0
+  pip                pkgs/main/linux-64::pip-21.2.4-py39h06a4308_0
+  pycosat            pkgs/main/linux-64::pycosat-0.6.3-py39h27cfd23_0
+  pycparser          pkgs/main/noarch::pycparser-2.21-pyhd3eb1b0_0
+  pyopenssl          pkgs/main/noarch::pyopenssl-22.0.0-pyhd3eb1b0_0
+  pysocks            pkgs/main/linux-64::pysocks-1.7.1-py39h06a4308_0
+  python             pkgs/main/linux-64::python-3.9.12-h12debd9_0
+  readline           pkgs/main/linux-64::readline-8.1.2-h7f8727e_1
+  requests           pkgs/main/noarch::requests-2.27.1-pyhd3eb1b0_0
+  ruamel_yaml        pkgs/main/linux-64::ruamel_yaml-0.15.100-py39h27cfd23_0
+  setuptools         pkgs/main/linux-64::setuptools-61.2.0-py39h06a4308_0
+  six                pkgs/main/noarch::six-1.16.0-pyhd3eb1b0_1
+  sqlite             pkgs/main/linux-64::sqlite-3.38.2-hc218d9a_0
+  tk                 pkgs/main/linux-64::tk-8.6.11-h1ccaba5_0
+  tqdm               pkgs/main/noarch::tqdm-4.63.0-pyhd3eb1b0_0
+  tzdata             pkgs/main/noarch::tzdata-2022a-hda174b7_0
+  urllib3            pkgs/main/noarch::urllib3-1.26.8-pyhd3eb1b0_0
+  wheel              pkgs/main/noarch::wheel-0.37.1-pyhd3eb1b0_0
+  xz                 pkgs/main/linux-64::xz-5.2.5-h7b6447c_0
+  yaml               pkgs/main/linux-64::yaml-0.2.5-h7b6447c_0
+  zlib               pkgs/main/linux-64::zlib-1.2.12-h7f8727e_1
+
+
+Preparing transaction: ...working... done
+Executing transaction: ...working... done
+installation finished.
+Warning in check_forbidden_install("Python packages") :
+  cannot install Python packages during R CMD check
+Warning in check_forbidden_install("Conda Environments") :
+  cannot install Conda Environments during R CMD check
++ /root/.cache/R/basilisk/1.15.5/0/bin/conda 'create' '--yes' '--prefix' '/root/.cache/R/basilisk/1.15.5/BiocBigGraph/0.0.1/bsklenv' 'python=3.11' '--quiet' '-c' 'conda-forge'
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /root/.cache/R/basilisk/1.15.5/BiocBigGraph/0.0.1/bsklenv
+
+  added / updated specs:
+    - python=3.11
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    _libgcc_mutex-0.1          |      conda_forge           3 KB  conda-forge
+    _openmp_mutex-4.5          |            2_gnu          23 KB  conda-forge
+    bzip2-1.0.8                |       hd590300_5         248 KB  conda-forge
+    ca-certificates-2024.2.2   |       hbcca054_0         152 KB  conda-forge
+    ld_impl_linux-64-2.40      |       h41732ed_0         688 KB  conda-forge
+    libexpat-2.5.0             |       hcb278e6_1          76 KB  conda-forge
+    libffi-3.4.2               |       h7f98852_5          57 KB  conda-forge
+    libgcc-ng-13.2.0           |       h807b86a_5         752 KB  conda-forge
+    libgomp-13.2.0             |       h807b86a_5         410 KB  conda-forge
+    libnsl-2.0.1               |       hd590300_0          33 KB  conda-forge
+    libsqlite-3.45.1           |       h2797004_0         839 KB  conda-forge
+    libuuid-2.38.1             |       h0b41bf4_0          33 KB  conda-forge
+    libxcrypt-4.4.36           |       hd590300_1          98 KB  conda-forge
+    libzlib-1.2.13             |       hd590300_5          60 KB  conda-forge
+    ncurses-6.4                |       h59595ed_2         864 KB  conda-forge
+    openssl-3.2.1              |       hd590300_0         2.7 MB  conda-forge
+    pip-24.0                   |     pyhd8ed1ab_0         1.3 MB  conda-forge
+    python-3.11.8              |hab00c5b_0_cpython        29.3 MB  conda-forge
+    readline-8.2               |       h8228510_1         275 KB  conda-forge
+    setuptools-69.1.1          |     pyhd8ed1ab_0         459 KB  conda-forge
+    tk-8.6.13                  |noxft_h4845f30_101         3.2 MB  conda-forge
+    tzdata-2024a               |       h0c530f3_0         117 KB  conda-forge
+    wheel-0.42.0               |     pyhd8ed1ab_0          56 KB  conda-forge
+    xz-5.2.6                   |       h166bdaf_0         409 KB  conda-forge
+    ------------------------------------------------------------
+                                           Total:        42.1 MB
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge
+  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-64::bzip2-1.0.8-hd590300_5
+  ca-certificates    conda-forge/linux-64::ca-certificates-2024.2.2-hbcca054_0
+  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.40-h41732ed_0
+  libexpat           conda-forge/linux-64::libexpat-2.5.0-hcb278e6_1
+  libffi             conda-forge/linux-64::libffi-3.4.2-h7f98852_5
+  libgcc-ng          conda-forge/linux-64::libgcc-ng-13.2.0-h807b86a_5
+  libgomp            conda-forge/linux-64::libgomp-13.2.0-h807b86a_5
+  libnsl             conda-forge/linux-64::libnsl-2.0.1-hd590300_0
+  libsqlite          conda-forge/linux-64::libsqlite-3.45.1-h2797004_0
+  libuuid            conda-forge/linux-64::libuuid-2.38.1-h0b41bf4_0
+  libxcrypt          conda-forge/linux-64::libxcrypt-4.4.36-hd590300_1
+  libzlib            conda-forge/linux-64::libzlib-1.2.13-hd590300_5
+  ncurses            conda-forge/linux-64::ncurses-6.4-h59595ed_2
+  openssl            conda-forge/linux-64::openssl-3.2.1-hd590300_0
+  pip                conda-forge/noarch::pip-24.0-pyhd8ed1ab_0
+  python             conda-forge/linux-64::python-3.11.8-hab00c5b_0_cpython
+  readline           conda-forge/linux-64::readline-8.2-h8228510_1
+  setuptools         conda-forge/noarch::setuptools-69.1.1-pyhd8ed1ab_0
+  tk                 conda-forge/linux-64::tk-8.6.13-noxft_h4845f30_101
+  tzdata             conda-forge/noarch::tzdata-2024a-h0c530f3_0
+  wheel              conda-forge/noarch::wheel-0.42.0-pyhd8ed1ab_0
+  xz                 conda-forge/linux-64::xz-5.2.6-h166bdaf_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
++ /root/.cache/R/basilisk/1.15.5/0/bin/conda 'install' '--yes' '--prefix' '/root/.cache/R/basilisk/1.15.5/BiocBigGraph/0.0.1/bsklenv' 'python=3.11'
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.12.0
+  latest version: 24.1.2
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+
+## Package Plan ##
+
+  environment location: /root/.cache/R/basilisk/1.15.5/BiocBigGraph/0.0.1/bsklenv
+
+  added / updated specs:
+    - python=3.11
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    ca-certificates-2023.12.12 |       h06a4308_0         126 KB
+    ------------------------------------------------------------
+                                           Total:         126 KB
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2024.2.2~ --> pkgs/main::ca-certificates-2023.12.12-h06a4308_0
+
+
+
+Downloading and Extracting Packages
+
+ca-certificates-2023 | 126 KB    |            |   0% 
+ca-certificates-2023 | 126 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
++ /root/.cache/R/basilisk/1.15.5/0/bin/conda 'install' '--yes' '--prefix' '/root/.cache/R/basilisk/1.15.5/BiocBigGraph/0.0.1/bsklenv' '-c' 'conda-forge' 'python=3.11' 'python=3.11'
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.12.0
+  latest version: 24.1.2
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+
+## Package Plan ##
+
+  environment location: /root/.cache/R/basilisk/1.15.5/BiocBigGraph/0.0.1/bsklenv
+
+  added / updated specs:
+    - python[version='3.11.*,3.11.*']
+
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2023.12.12~ --> conda-forge::ca-certificates-2024.2.2-hbcca054_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting torchbiggraph==1.dev1
+  Downloading torchbiggraph-1.dev1-py3-none-any.whl (85 kB)
+     <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 85.2/85.2 kB 7.3 MB/s eta 0:00:00
+Collecting torch==2.1.1
+  Downloading torch-2.1.1-cp311-cp311-manylinux1_x86_64.whl.metadata (25 kB)
+Collecting torchvision==0.16.1
+  Downloading torchvision-0.16.1-cp311-cp311-manylinux1_x86_64.whl.metadata (6.6 kB)
+Collecting attr==0.3.2
+  Downloading attr-0.3.2-py2.py3-none-any.whl.metadata (1.2 kB)
+Collecting attrs>=18.2.0 (from torchbiggraph==1.dev1)
+  Using cached attrs-23.2.0-py3-none-any.whl.metadata (9.5 kB)
+Collecting h5py>=2.8.0 (from torchbiggraph==1.dev1)
+  Downloading h5py-3.10.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.5 kB)
+Collecting numpy (from torchbiggraph==1.dev1)
+  Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+     <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 61.0/61.0 kB 17.8 MB/s eta 0:00:00
+Requirement already satisfied: setuptools in /root/.cache/R/basilisk/1.15.5/BiocBigGraph/0.0.1/bsklenv/lib/python3.11/site-packages (from torchbiggraph==1.dev1) (69.1.1)
+Collecting tqdm (from torchbiggraph==1.dev1)
+  Downloading tqdm-4.66.2-py3-none-any.whl.metadata (57 kB)
+     <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 57.6/57.6 kB 13.0 MB/s eta 0:00:00
+Collecting filelock (from torch==2.1.1)
+  Using cached filelock-3.13.1-py3-none-any.whl.metadata (2.8 kB)
+Collecting typing-extensions (from torch==2.1.1)
+  Downloading typing_extensions-4.10.0-py3-none-any.whl.metadata (3.0 kB)
+Collecting sympy (from torch==2.1.1)
+  Using cached sympy-1.12-py3-none-any.whl.metadata (12 kB)
+Collecting networkx (from torch==2.1.1)
+  Using cached networkx-3.2.1-py3-none-any.whl.metadata (5.2 kB)
+Collecting jinja2 (from torch==2.1.1)
+  Using cached Jinja2-3.1.3-py3-none-any.whl.metadata (3.3 kB)
+Collecting fsspec (from torch==2.1.1)
+  Using cached fsspec-2024.2.0-py3-none-any.whl.metadata (6.8 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.1.105 (from torch==2.1.1)
+  Using cached nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-runtime-cu12==12.1.105 (from torch==2.1.1)
+  Using cached nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-cupti-cu12==12.1.105 (from torch==2.1.1)
+  Using cached nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cudnn-cu12==8.9.2.26 (from torch==2.1.1)
+  Using cached nvidia_cudnn_cu12-8.9.2.26-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cublas-cu12==12.1.3.1 (from torch==2.1.1)
+  Using cached nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cufft-cu12==11.0.2.54 (from torch==2.1.1)
+  Using cached nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-curand-cu12==10.3.2.106 (from torch==2.1.1)
+  Using cached nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cusolver-cu12==11.4.5.107 (from torch==2.1.1)
+  Using cached nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparse-cu12==12.1.0.106 (from torch==2.1.1)
+  Using cached nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-nccl-cu12==2.18.1 (from torch==2.1.1)
+  Downloading nvidia_nccl_cu12-2.18.1-py3-none-manylinux1_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvtx-cu12==12.1.105 (from torch==2.1.1)
+  Using cached nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl.metadata (1.7 kB)
+Collecting triton==2.1.0 (from torch==2.1.1)
+  Downloading triton-2.1.0-0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.3 kB)
+Collecting requests (from torchvision==0.16.1)
+  Using cached requests-2.31.0-py3-none-any.whl.metadata (4.6 kB)
+Collecting pillow!=8.3.*,>=5.3.0 (from torchvision==0.16.1)
+  Downloading pillow-10.2.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (9.7 kB)
+Collecting nvidia-nvjitlink-cu12 (from nvidia-cusolver-cu12==11.4.5.107->torch==2.1.1)
+  Using cached nvidia_nvjitlink_cu12-12.3.101-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.1.1)
+  Downloading MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.0 kB)
+Collecting charset-normalizer<4,>=2 (from requests->torchvision==0.16.1)
+  Downloading charset_normalizer-3.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (33 kB)
+Collecting idna<4,>=2.5 (from requests->torchvision==0.16.1)
+  Using cached idna-3.6-py3-none-any.whl.metadata (9.9 kB)
+Collecting urllib3<3,>=1.21.1 (from requests->torchvision==0.16.1)
+  Using cached urllib3-2.2.1-py3-none-any.whl.metadata (6.4 kB)
+Collecting certifi>=2017.4.17 (from requests->torchvision==0.16.1)
+  Using cached certifi-2024.2.2-py3-none-any.whl.metadata (2.2 kB)
+Collecting mpmath>=0.19 (from sympy->torch==2.1.1)
+  Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Downloading torch-2.1.1-cp311-cp311-manylinux1_x86_64.whl (670.2 MB)
+   <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 670.2/670.2 MB 3.4 MB/s eta 0:00:00
+Downloading torchvision-0.16.1-cp311-cp311-manylinux1_x86_64.whl (6.8 MB)
+   <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 6.8/6.8 MB 109.7 MB/s eta 0:00:00
+Downloading attr-0.3.2-py2.py3-none-any.whl (3.3 kB)
+Using cached nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl (410.6 MB)
+Using cached nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (14.1 MB)
+Using cached nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (23.7 MB)
+Using cached nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (823 kB)
+Using cached nvidia_cudnn_cu12-8.9.2.26-py3-none-manylinux1_x86_64.whl (731.7 MB)
+Using cached nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl (121.6 MB)
+Using cached nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl (56.5 MB)
+Using cached nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl (124.2 MB)
+Using cached nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl (196.0 MB)
+Downloading nvidia_nccl_cu12-2.18.1-py3-none-manylinux1_x86_64.whl (209.8 MB)
+   <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 209.8/209.8 MB 9.7 MB/s eta 0:00:00
+Using cached nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (99 kB)
+Downloading triton-2.1.0-0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (89.2 MB)
+   <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 89.2/89.2 MB 39.1 MB/s eta 0:00:00
+Using cached attrs-23.2.0-py3-none-any.whl (60 kB)
+Downloading h5py-3.10.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.8 MB)
+   <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 4.8/4.8 MB 111.6 MB/s eta 0:00:00
+Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.3 MB)
+   <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 18.3/18.3 MB 86.4 MB/s eta 0:00:00
+Downloading pillow-10.2.0-cp311-cp311-manylinux_2_28_x86_64.whl (4.5 MB)
+   <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 4.5/4.5 MB 111.4 MB/s eta 0:00:00
+Using cached filelock-3.13.1-py3-none-any.whl (11 kB)
+Using cached fsspec-2024.2.0-py3-none-any.whl (170 kB)
+Using cached Jinja2-3.1.3-py3-none-any.whl (133 kB)
+Using cached networkx-3.2.1-py3-none-any.whl (1.6 MB)
+Using cached requests-2.31.0-py3-none-any.whl (62 kB)
+Using cached sympy-1.12-py3-none-any.whl (5.7 MB)
+Downloading tqdm-4.66.2-py3-none-any.whl (78 kB)
+   <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 78.3/78.3 kB 22.2 MB/s eta 0:00:00
+Downloading typing_extensions-4.10.0-py3-none-any.whl (33 kB)
+Using cached certifi-2024.2.2-py3-none-any.whl (163 kB)
+Downloading charset_normalizer-3.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (140 kB)
+   <e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81><e2><94><81> 140.3/140.3 kB 44.8 MB/s eta 0:00:00
+Using cached idna-3.6-py3-none-any.whl (61 kB)
+Downloading MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (28 kB)
+Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+Using cached urllib3-2.2.1-py3-none-any.whl (121 kB)
+Using cached nvidia_nvjitlink_cu12-12.3.101-py3-none-manylinux1_x86_64.whl (20.5 MB)
+Installing collected packages: mpmath, attr, urllib3, typing-extensions, tqdm, sympy, pillow, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, MarkupSafe, idna, fsspec, filelock, charset-normalizer, certifi, attrs, triton, requests, nvidia-cusparse-cu12, nvidia-cudnn-cu12, jinja2, h5py, nvidia-cusolver-cu12, torch, torchvision, torchbiggraph
+Successfully installed MarkupSafe-2.1.5 attr-0.3.2 attrs-23.2.0 certifi-2024.2.2 charset-normalizer-3.3.2 filelock-3.13.1 fsspec-2024.2.0 h5py-3.10.0 idna-3.6 jinja2-3.1.3 mpmath-1.3.0 networkx-3.2.1 numpy-1.26.4 nvidia-cublas-cu12-12.1.3.1 nvidia-cuda-cupti-cu12-12.1.105 nvidia-cuda-nvrtc-cu12-12.1.105 nvidia-cuda-runtime-cu12-12.1.105 nvidia-cudnn-cu12-8.9.2.26 nvidia-cufft-cu12-11.0.2.54 nvidia-curand-cu12-10.3.2.106 nvidia-cusolver-cu12-11.4.5.107 nvidia-cusparse-cu12-12.1.0.106 nvidia-nccl-cu12-2.18.1 nvidia-nvjitlink-cu12-12.3.101 nvidia-nvtx-cu12-12.1.105 pillow-10.2.0 requests-2.31.0 sympy-1.12 torch-2.1.1 torchbiggraph-1.dev1 torchvision-0.16.1 tqdm-4.66.2 triton-2.1.0 typing-extensions-4.10.0 urllib3-2.2.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
 Error in py_module_import(module, convert = convert) : 
-  ModuleNotFoundError: No module named 'torchbiggraph'
+  ModuleNotFoundError: No module named 'torchbiggraph.utils'
 Run `reticulate::py_last_error()` for details.
-Calls: <Anonymous> -> py_module_import
+Calls: CG_embed_sce ... import_from_path_immediate -> import -> py_module_import
 Execution halted
 * checking for unstated dependencies in 'tests' ... WARNING
 'library' or 'require' call not declared from: 'testthat'
