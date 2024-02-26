@@ -297,6 +297,8 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
    tor = import_from_path("torchbiggraph", path=fbloc)
    conf = import_from_path("torchbiggraph.config", path=fbloc)
    imps = import_from_path("torchbiggraph.converters.importers", path=fbloc)
+   ut = import_from_path("torchbiggraph.utils", path=fbloc)
+   trainer = import_from_path("torchbiggraph.train", path=fbloc)
 #
 # assume pathlib is available
 #
@@ -388,7 +390,30 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
     imps$TSVEdgelistReader(lhs_col=0L, rhs_col=2L, rel_col=1L),
     dynamic_relations = confsch$dynamic_relations)
 #
-# OK?
+# train
+#
+  ut$setup_logging()
+  si = ut$SubprocessInitializer()
+  config_py_path = file.path(fbloc, "examples", "configs", "fb15k_config_gpu.py")
+#  '/home/rstudio/.local/lib/python3.10/site-packages/torchbiggraph/examples/configs/fb15k_config_gpu.py'
+  sl = ut$setup_logging
+  si$register(sl, confsch$verbose)
+  tmpf = reticulate::import("tempfile")
+  ndir = tmpf$TemporaryDirectory(prefix="torchbiggraph_config_")
+  uuid = reticulate::import("uuid")
+  nname = uuid$uuid4()$hex
+  file.copy(config_py_path, paste0(ndir$name, "/", nname, ".py"))
+  si$register(pbg$config$add_to_sys_path,  ndir)
+
+  pyatt = import("attr")
+  trc = pyatt$evolve(confsch,
+        edge_paths=list(confsch$edge_paths[[1]]))
+
+  trainer$train(trc, subprocess_init=si)
+
+
+#
+#
 #
     confsch
 
