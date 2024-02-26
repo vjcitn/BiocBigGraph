@@ -142,7 +142,7 @@ cat(sprintf("instance of pbgconf with %d elements.\n", length(x)))
 setup_config_schema_optionals = function( 
  dimension=400L, init_scale=0.001, max_norm=NULL, global_emb=FALSE, comparator='dot',
  bias=FALSE, loss_fn='softmax', margin=0.1, regularization_coef=0.001, regularizer='N3',
- init_path=NULL, checkpoint_preservation_interval=NULL, num_epochs=50L,
+ init_path=NULL, checkpoint_preservation_interval=NULL, num_epochs=5L,
  num_edge_chunks=NULL, max_edges_per_chunk=1000000000L, 
  bucket_order=NULL,
  bucket_order_string="INSIDE_OUT", # must be dropped
@@ -284,7 +284,7 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
   tsvtarget = paste0(tempfile(tmpdir=workdir), ".tsv")
   sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS)
 
-  proc = basilisk::basiliskStart(bsklenv)
+  proc = basilisk::basiliskStart(bsklenv, fork=FALSE)
   on.exit(basilisk::basiliskStop(proc))
   basilisk::basiliskRun(proc, function(sce, workdir, N_PARTITIONS, FEATURIZED,
        entity_path, ... ) {
@@ -297,7 +297,7 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
    tor = import_from_path("torchbiggraph", path=fbloc)
    conf = import_from_path("torchbiggraph.config", path=fbloc)
    imps = import_from_path("torchbiggraph.converters.importers", path=fbloc)
-   ut = import_from_path("torchbiggraph.utils", path=fbloc)
+   ut = import_from_path("torchbiggraph.util", path=fbloc)
    trainer = import_from_path("torchbiggraph.train", path=fbloc)
 #
 # assume pathlib is available
@@ -394,7 +394,7 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
 #
   ut$setup_logging()
   si = ut$SubprocessInitializer()
-  config_py_path = file.path(fbloc, "examples", "configs", "fb15k_config_gpu.py")
+#  config_py_path = file.path(fbloc, "examples", "configs", "fb15k_config_gpu.py")
 #  '/home/rstudio/.local/lib/python3.10/site-packages/torchbiggraph/examples/configs/fb15k_config_gpu.py'
   sl = ut$setup_logging
   si$register(sl, confsch$verbose)
@@ -402,14 +402,14 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
   ndir = tmpf$TemporaryDirectory(prefix="torchbiggraph_config_")
   uuid = reticulate::import("uuid")
   nname = uuid$uuid4()$hex
-  file.copy(config_py_path, paste0(ndir$name, "/", nname, ".py"))
-  si$register(pbg$config$add_to_sys_path,  ndir)
+#  file.copy(config_py_path, paste0(ndir$name, "/", nname, ".py"))
+#  si$register(conf$add_to_sys_path,  ndir)
 
   pyatt = import("attr")
   trc = pyatt$evolve(confsch,
         edge_paths=list(confsch$edge_paths[[1]]))
 
-  trainer$train(trc, subprocess_init=si)
+  trainer$train(trc) #, subprocess_init=si)
 
 
 #
@@ -418,6 +418,6 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
     confsch
 
   }, sce=sce, workdir=workdir, N_PARTITIONS=N_PARTITIONS, FEATURIZED=FEATURIZED, 
-         entity_path = entity_path, ...)
+         entity_path = entity_path, ..., fork=FALSE)
 }
 
