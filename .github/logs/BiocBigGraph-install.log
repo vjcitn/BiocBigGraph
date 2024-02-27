@@ -1,12 +1,10 @@
 * installing *source* package 'BiocBigGraph' ...
-** using staged installation
+** using non-staged installation via StagedInstall field
 ** R
 ** inst
 ** byte-compile and prepare package for lazy loading
 ** help
 *** installing help indices
 ** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+** testing if installed package can be loaded
 * DONE (BiocBigGraph)

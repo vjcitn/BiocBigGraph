@@ -3,7 +3,7 @@
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
-* building 'BiocBigGraph_0.0.2001.tar.gz'
+* building 'BiocBigGraph_0.0.3.tar.gz'
 Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
   storing paths of more than 100 bytes is not portable:
   'BiocBigGraph/node_modules/@azure/core-auth/node_modules/@azure/abort-controller/dist-esm/src/AbortError.js'
