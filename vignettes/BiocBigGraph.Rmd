@@ -1,0 +1,52 @@
+---
+title: "BiocBigGraph: embedding large multimodal graphs with PyTorch biggraph"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{BiocBigGraph overview}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# Introduction
+
+Multimodal graphs can model many aspects of
+structures and processes of interest genome biology.
+The SIMBA paper of the Pinello lab explores
+the topic.
+
+# Basic example
+
+Start with the single-cell expression data for 2700
+PBMCs.
+
+```{r getp3, message=FALSE}
+library(BiocBigGraph)
+p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
+assay(p3k) = as.matrix(assay(p3k)) # dense for now
+p3k = scuttle::logNormCounts(p3k)
+p3k
+```
+
+Develop a provisional labeling with SingleR.
+
+
+```{r dosing, message=FALSE}
+library(SingleR)
+hpca = HumanPrimaryCellAtlasData()
+inirown = rownames(p3k)
+rownames(p3k) = make.names(rowData(p3k)$Symbol, unique=TRUE)
+ann2 = SingleR(p3k, hpca, labels=hpca$label.fine)
+library(scater)
+p3kp = runPCA(p3k)
+pairs(reducedDims(p3kp)$PCA[,1:4], 
+  col=factor(ann2$labels), pch=19, cex=.3)
+rownames(p3k) = inirown
+```
+

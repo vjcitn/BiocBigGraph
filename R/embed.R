@@ -294,6 +294,9 @@ CG_embed_sce = function(sce, cell_id_var, workdir=tempdir(), N_GENES=1000, N_BIN
   if (missing(cell_id_var)) stop("cell_id_var must be supplied")
   if (!(cell_id_var %in% names(colData(sce)))) stop(
          "cell_id_var not in colData(sce)")
+  set_train() # this is a quick internal pip run because
+  # the training module seems to lose track of where
+  # torchbiggraph can be loaded from
   N_GENES = as.integer(N_GENES)
   N_BINS = as.integer(N_BINS)
   
@@ -411,17 +414,17 @@ CG_embed_sce = function(sce, cell_id_var, workdir=tempdir(), N_GENES=1000, N_BIN
 #
   ut$setup_logging()
   si = ut$SubprocessInitializer()
-#  config_py_path = file.path(fbloc, "examples", "configs", "fb15k_config_gpu.py")
-#  '/home/rstudio/.local/lib/python3.10/site-packages/torchbiggraph/examples/configs/fb15k_config_gpu.py'
   sl = ut$setup_logging
   si$register(sl, confsch$verbose)
+#
+# there is code here that doesn't get used because
+# some subprocess management used in the working
+# fb15k example won't work in reticulate context Mar 2024
+#
   tmpf = reticulate::import("tempfile")
   ndir = tmpf$TemporaryDirectory(prefix="torchbiggraph_config_")
   uuid = reticulate::import("uuid")
   nname = uuid$uuid4()$hex
-#  file.copy(config_py_path, paste0(ndir$name, "/", nname, ".py"))
-#  si$register(conf$add_to_sys_path,  ndir)
-
   pyatt = import("attr")
   trc = pyatt$evolve(confsch,
         edge_paths=list(confsch$edge_paths[[1]]))
