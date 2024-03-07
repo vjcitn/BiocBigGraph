@@ -6,6 +6,7 @@
 \usage{
 CG_embed_sce(
   sce,
+  cell_id_var,
   workdir = tempdir(),
   N_GENES = 1000,
   N_BINS = 5,
@@ -17,6 +18,10 @@ CG_embed_sce(
 }
 \arguments{
 \item{sce}{SingleCellExperiment instance ready for conversion with 'sce_to_triples'}
+
+\item{cell_id_var}{character(1) mandatory selection of
+column of colData(sce) that is to be used as colnames
+(which is often missing)}
 
 \item{workdir}{location of temporary storage, defaults to tempdir()}
 
@@ -32,6 +37,9 @@ CG_embed_sce(
 
 \item{\dots}{passed directly to \code{set_config}}
 }
+\value{
+SingleCellExperiment with additional altExp and rowData corresponding to cell and gene embeddings
+}
 \description{
 complete processing of SCE
 }
@@ -43,6 +51,7 @@ Any changes to configuration can be passed via ....  For example,
 p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
 assay(p3k) = as.matrix(assay(p3k)) # dense for now
 p3k = scuttle::logNormCounts(p3k)
-co = CG_embed_sce(p3k, dynamic_relations=FALSE)
+co = CG_embed_sce(p3k, cell_id_var="Barcode", 
+   N_GENES=50, dynamic_relations=FALSE)
 co
 }
