@@ -54,4 +54,12 @@ p3k = scuttle::logNormCounts(p3k)
 co = CG_embed_sce(p3k, cell_id_var="Barcode", 
    N_GENES=50, dynamic_relations=FALSE)
 co
+pp = prcomp(t(assay(altExp(co,"pbg_cell_emb"))))
+data(p3k.fine)
+coar = sapply(strsplit(p3k.fine, ":"), "[", 1)
+pairs(pp$x[,1:4], pch=".", col=factor(coar))
+library(ggplot2)
+mdf = data.frame(pp$x[,c(2,4)], type=coar)
+ggplot(mdf, aes(x=PC2, y=PC4, colour=coar, text=coar)) + 
+   geom_point() 
 }

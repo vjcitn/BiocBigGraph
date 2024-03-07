@@ -259,6 +259,9 @@ set_config = function(...) {
 
 #' complete processing of SCE
 #' @param sce SingleCellExperiment instance ready for conversion with 'sce_to_triples'
+#' @param cell_id_var character(1) mandatory selection of
+#' column of colData(sce) that is to be used as colnames
+#' (which is often missing)
 #' @param workdir location of temporary storage, defaults to tempdir()
 #' @param N_GENES numeric(1) passed to 'sce_to_triples'
 #' @param N_BINS numeric(1) passed to 'sce_to_triples' for discretization
@@ -268,19 +271,33 @@ set_config = function(...) {
 #' @param \dots passed directly to `set_config`
 #' @note Any changes to configuration can be passed via ....  For example,
 #' `num_epochs` defaults to 5L, pass directly in this function.
+#' @return SingleCellExperiment with additional altExp and rowData corresponding to cell and gene embeddings
 #' @examples
 #' p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
 #' assay(p3k) = as.matrix(assay(p3k)) # dense for now
 #' p3k = scuttle::logNormCounts(p3k)
-#' co = CG_embed_sce(p3k, N_GENES=50, dynamic_relations=FALSE)
+#' co = CG_embed_sce(p3k, cell_id_var="Barcode", 
+#'    N_GENES=50, dynamic_relations=FALSE)
 #' co
+#' pp = prcomp(t(assay(altExp(co,"pbg_cell_emb"))))
+#' data(p3k.fine)
+#' coar = sapply(strsplit(p3k.fine, ":"), "[", 1)
+#' pairs(pp$x[,1:4], pch=".", col=factor(coar))
+#' library(ggplot2)
+#' mdf = data.frame(pp$x[,c(2,4)], type=coar)
+#' ggplot(mdf, aes(x=PC2, y=PC4, colour=coar, text=coar)) + 
+#'    geom_point() 
 #' @export
-CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5, 
+CG_embed_sce = function(sce, cell_id_var, workdir=tempdir(), N_GENES=1000, N_BINS=5, 
    N_PARTITIONS=1L, FEATURIZED=FALSE, entity_path="ents",
     ...) {
+  if (missing(cell_id_var)) stop("cell_id_var must be supplied")
+  if (!(cell_id_var %in% names(colData(sce)))) stop(
+         "cell_id_var not in colData(sce)")
   N_GENES = as.integer(N_GENES)
   N_BINS = as.integer(N_BINS)
   
+  clkeep = match.call()
   tsvtarget = paste0(tempfile(tmpdir=workdir), ".tsv")
   sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS)
 
@@ -413,9 +430,38 @@ CG_embed_sce = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
 
 
 #
+# convert components of configuration for preservation
+# in R
+can_retain = c("background_io", "batch_size", 
+"bias", "checkpoint_path", 
+"checkpoint_preservation_interval", "comparator", "dimension", 
+"disable_lhs_negs", "disable_rhs_negs", "distributed_init_method", 
+"distributed_tree_init_order", "dynamic_relations", "edge_paths", 
+"entity_path", "eval_fraction", 
+"eval_num_batch_negs", "eval_num_uniform_negs", 
+"global_emb", "half_precision", "hogwild_delay", "init_path", 
+"init_scale", "loss_fn", "lr", "margin", "max_edges_per_chunk", 
+"max_norm", "NAME", "num_batch_negs", "num_edge_chunks", "num_epochs", 
+"num_gpus", "num_groups_for_partition_server", "num_groups_per_sharded_partition_server", 
+"num_machines", "num_partition_servers", "num_uniform_negs", 
+"partition_shard_size", "regularization_coef", "regularizer", 
+"relation_lr", "verbose", 
+"workers")
 #
+ response = lapply(can_retain, function(x) confsch[[x]])
+ names(response) = can_retain
+# ans = list(conf=response, call.args=clkeep)
+# class(ans) = c("sce_pbg_emb", class(ans))
 #
-    confsch
+# ans
+ ing = ingest_embeddings(list(conf=response))
+ colnames(sce) = sce[[cell_id_var]]
+ csce = SummarizedExperiment(ing$cemb)
+ colnames(csce) = ing$C_entities_ordered
+ csce = csce[, colnames(sce)] # reorder
+ altExp(sce, "pbg_cell_emb") = csce
+ metadata(sce) = c(metadata(sce), call=clkeep)
+ sce 
 
   }, sce=sce, workdir=workdir, N_PARTITIONS=N_PARTITIONS, FEATURIZED=FEATURIZED, 
          entity_path = entity_path, ..., fork=FALSE)

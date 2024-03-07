@@ -8,7 +8,7 @@ Authors@R:
     role=c("cre", "aut")))
 Depends: R (>= 4.3), reticulate, methods, SummarizedExperiment,
 	SingleCellExperiment
-Suggests: TENxPBMCData, scuttle, knitr
+Suggests: TENxPBMCData, scuttle, knitr, SingleR, scater
 Imports: basilisk, scran
 License: Artistic-2.0
 biocViews: StatisticalMethod, DimensionReduction, Infrastructure
