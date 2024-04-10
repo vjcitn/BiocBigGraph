@@ -48,6 +48,8 @@ Any changes to configuration can be passed via ....  For example,
 \code{num_epochs} defaults to 5L, pass directly in this function.
 }
 \examples{
+# NB as of April 2024 we do not control the random operations
+# of PyTorch BigGraph ... this example is not reproducible
 p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
 assay(p3k) = as.matrix(assay(p3k)) # dense for now
 p3k = scuttle::logNormCounts(p3k)
