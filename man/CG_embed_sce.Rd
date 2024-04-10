@@ -51,6 +51,7 @@ Any changes to configuration can be passed via ....  For example,
 p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
 assay(p3k) = as.matrix(assay(p3k)) # dense for now
 p3k = scuttle::logNormCounts(p3k)
+set.seed(1234)
 co = CG_embed_sce(p3k, cell_id_var="Barcode", 
    N_GENES=50, dynamic_relations=FALSE)
 co

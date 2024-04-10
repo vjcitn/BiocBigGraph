@@ -15,4 +15,5 @@ set_train = function() {
 pippath = (file.path(basilisk.utils::getExternalDir(), "BiocBigGraph", "0.0.3", "bsklenv", "bin", "pip"))
 tpath = system.file("python", "fbsource", package="BiocBigGraph")
 system2(pippath, c("install", tpath))
+system2(pippath, c("install", "torch")) # needed for random seed set?
 }

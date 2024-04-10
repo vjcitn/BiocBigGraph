@@ -276,6 +276,7 @@ set_config = function(...) {
 #' p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
 #' assay(p3k) = as.matrix(assay(p3k)) # dense for now
 #' p3k = scuttle::logNormCounts(p3k)
+#' set.seed(1234)
 #' co = CG_embed_sce(p3k, cell_id_var="Barcode", 
 #'    N_GENES=50, dynamic_relations=FALSE)
 #' co
@@ -314,6 +315,11 @@ CG_embed_sce = function(sce, cell_id_var, workdir=tempdir(), N_GENES=1000, N_BIN
 # C++ compilation of some code in fbsource
 #
    fbloc = system.file("python", "fbsource", package="BiocBigGraph")
+   torc = import("torch")
+   torc$manual_seed(0)
+   torc$use_deterministic_algorithms(mode=FALSE, warn_only=TRUE)
+   rand = import("random")
+   rand$seed(0)
    tor = import_from_path("torchbiggraph", path=fbloc)
    conf = import_from_path("torchbiggraph.config", path=fbloc)
    imps = import_from_path("torchbiggraph.converters.importers", path=fbloc)
