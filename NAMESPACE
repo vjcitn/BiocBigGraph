@@ -3,6 +3,7 @@
 S3method(print,CG_emb)
 S3method(print,pbgconf)
 export(CG_embed_sce)
+export(CG_embed_simple)
 export(check_bigg)
 export(config_constants)
 export(disc_matrix)

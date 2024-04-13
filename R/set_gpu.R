@@ -5,6 +5,7 @@
 set_gpu = function() {
 pippath = (file.path(basilisk.utils::getExternalDir(), "BiocBigGraph", "0.0.3", "bsklenv", "bin", "pip"))
 tpath = system.file("python", "fbsource", package="BiocBigGraph")
+try(system2(pippath, c("uninstall", "-y", "torchbiggraph")))
 system2(pippath, c("install", tpath), env=c("PBG_INSTALL_CPP=1"))
 }
 
