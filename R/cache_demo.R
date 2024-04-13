@@ -1,4 +1,5 @@
 # https://mghp.osn.xsede.org/bir190004-bucket01/BiocBigGraphDemo/demo4.zip
+# https://mghp.osn.xsede.org/bir190004-bucket01/BiocBigGraphDemo/g1500.zip
 
 
 #' check that a URL can get a 200 for a HEAD request
@@ -21,7 +22,7 @@ url_ok = function(url) {
 #' bgdempath
 #' @export
 grab_bgdemo = function(cache = BiocFileCache::BiocFileCache(), url=
-  "https://mghp.osn.xsede.org/bir190004-bucket01/BiocBigGraphDemo/demo4.zip"
+  "https://mghp.osn.xsede.org/bir190004-bucket01/BiocBigGraphDemo/g1500.zip"
    ) {
    inf = BiocFileCache::bfcquery(cache, url)
    if (nrow(inf)>0) {
@@ -32,3 +33,17 @@ grab_bgdemo = function(cache = BiocFileCache::BiocFileCache(), url=
    if (!url_ok(url)) stop(sprintf("HEAD for %s does not return status code 200\n", url))
    unname(BiocFileCache::bfcadd(cache, rname = basename(url), fpath=url, rtype="web"))
 }
+
+#' cache the demonstration BigGraph output (train only)
+#' @param cache BiocFileCache instance or equivalent
+#' @param url character(1) defaults to OSN address of 1500 gene, 35 epoch
+#' pbmc3k embedding, produced April 2024
+#' @note This function will check for presence of url in cache using bfcquery.
+#' @return SingleCellExperiment
+#' @export
+grab_bgdemo_sce = function(cache = BiocFileCache::BiocFileCache(), url=
+  "https://mghp.osn.xsede.org/bir190004-bucket01/BiocBigGraphDemo/p3k_e35_g1500.rda") {
+   pa = grab_bgdemo(cache=cache, url=url)
+   get(load(pa))
+}
+
