@@ -77,6 +77,8 @@ simple_conf = function(sce, workdir=tempdir(), N_GENES=1000, N_BINS=5,
 # call the ConfigSchema method
 #
     confsch = do.call(conf$ConfigSchema, confargs)
+    palib = try(reticulate::import("pathlib"))
+    if (inherits(palib, "try-error")) stop("be sure pathlib can be imported by reticulate")
     confsch
   trpaths = reticulate::r_to_py(lapply(unname(edge_paths),
       palib$Path))

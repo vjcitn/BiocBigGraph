@@ -1,5 +1,9 @@
 
 #' helper function
+#' @param sce SingleCellExperiment
+#' @param co character()
+#' @param colname character(1)
+#' @param assayname character(1)
 docol = function (sce, co, colname="Barcode", assayname="disc") 
 {
     nc = names(colData(sce))

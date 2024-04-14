@@ -6,6 +6,15 @@
 \usage{
 docol(sce, co, colname = "Barcode", assayname = "disc")
 }
+\arguments{
+\item{sce}{SingleCellExperiment}
+
+\item{co}{character()}
+
+\item{colname}{character(1)}
+
+\item{assayname}{character(1)}
+}
 \description{
 helper function
 }
