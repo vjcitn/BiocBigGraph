@@ -27,8 +27,8 @@ torch::Tensor randperm(long numItems, int numThreads, int64_t seedIn = -1) {
   auto chunksAccessor = chunks.accessor<uint8_t, 1>();
   std::vector<std::vector<int>> allCounts(numThreads);
   auto stepOne = [&](int64_t startIdx, int64_t endIdx, int threadIdx) {
-    CPUGeneratorType generator(
-        seedIn >= 0 ? seedIn + threadIdx : at::default_rng_seed_val);
+    CPUGeneratorType generator(0);
+#        seedIn >= 0 ? seedIn + threadIdx : at::default_rng_seed_val);
 
     std::vector<int>& myCounts = allCounts[threadIdx];
     myCounts.assign(numThreads, 0);
@@ -80,9 +80,9 @@ torch::Tensor randperm(long numItems, int numThreads, int64_t seedIn = -1) {
     stepTwoThreads[threadIdx].join();
   }
   auto stepThree = [&](int64_t startIdx, int64_t endIdx, int threadIdx) {
-    CPUGeneratorType generator(
-        seedIn >= 0 ? seedIn + threadIdx + numThreads
-                    : at::default_rng_seed_val);
+    CPUGeneratorType generator(0);
+#        seedIn >= 0 ? seedIn + threadIdx + numThreads
+#                    : at::default_rng_seed_val);
     for (int idx = startIdx; idx < endIdx - 1; idx += 1) {
       int64_t otherIdx = idx + generator.random() % (endIdx - idx);
       std::swap(permAccessor[idx], permAccessor[otherIdx]);
