@@ -20,7 +20,7 @@
 #' assay(p3k) = as.matrix(assay(p3k)) # dense for now
 #' p3k = scuttle::logNormCounts(p3k)
 #' set.seed(1234)
-#' co = CG_embed_simple(p3k, cell_id_var="Barcode", 
+#' co = CG_embed_simple(p3k, cell_id_var="Barcode", num_epochs=6L,
 #'    N_GENES=50, dynamic_relations=FALSE)
 #' co
 #' pp = prcomp(t(assay(altExp(co,"pbg_cell_emb"))))
@@ -30,7 +30,7 @@
 #' library(ggplot2)
 #' mdf = data.frame(pp$x[,c(2,4)], type=coar)
 #' ggplot(mdf, aes(x=PC2, y=PC4, colour=coar, text=coar)) + 
-#' attempt direct retic
+#'     geom_point()
 #' @export
 CG_embed_simple = function(sce, cell_id_var, workdir=tempdir(), N_GENES=1000, N_BINS=5, 
    N_PARTITIONS=1L, FEATURIZED=FALSE, entity_path="ents",
@@ -210,10 +210,13 @@ can_retain = c("background_io", "batch_size",
  ing = ingest_embeddings(list(conf=response))
  colnames(sce) = sce[[cell_id_var]]
  csce = SummarizedExperiment(ing$cemb)
+ g_emb = ing$gemb
+ g_ent_ord = ing$G_entities_ordered
  colnames(csce) = ing$C_entities_ordered
  csce = csce[, colnames(sce)] # reorder
  altExp(sce, "pbg_cell_emb") = csce
- metadata(sce) = c(metadata(sce), call=clkeep, conf=response)
+ metadata(sce) = list(ini=metadata(sce), call=clkeep, conf=response,
+     g_emb=g_emb, g_ent_ord=g_ent_ord, stats=ing$stats)
  sce 
 }
 
