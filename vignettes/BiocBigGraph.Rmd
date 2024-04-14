@@ -23,6 +23,8 @@ the topic.
 
 # Basic example
 
+## Bioconductor 'SingleR' workflow
+
 Start with the single-cell expression data for 2700
 PBMCs.
 
@@ -48,5 +50,71 @@ p3kp = runPCA(p3k)
 pairs(reducedDims(p3kp)$PCA[,1:4], 
   col=factor(ann2$labels), pch=19, cex=.3)
 rownames(p3k) = inirown
+```
+
+## BigGraph embedding
+
+Briefly, our application of the pyTorch-BigGraph algorithm
+to the pbmc 3k dataset works as follows:
+
+- use scuttle default normalization and log transformation of counts
+- use scran gene-wise variance modeling to filter highly variable genes
+- discretize the distribution of normalized expression into
+five bins, using quintiles of values greater than zero, and
+assigning zero values to the bin for lowest expression measures
+- produce the triples c-r-g where c is a cell identifier, g is a
+gene identifier r is
+the bin label for expression of g in c
+- produce gene and cell embeddings of selected dimensionalities
+using the weighted graph described by the triples
+
+We use `grab_bgdemo_sce` to retrieve SingleCellExperiments that
+manage the outputs of this algorithm.  The embeddings themselves
+are summarized with approximate PCA; points corresponding to cells
+are colored using the reference-based labeling created with SingleR.
+
+### 400-dim cell embedding
+
+```{r lk400a,message=FALSE}
+sceplus400 = grab_bgdemo_sce(use_400=TRUE)
+sceplus400
+data(p3k.coarse)
+library(irlba)
+pca = prcomp_irlba(t(assay(altExp(sceplus400))),4)
+pairs(pca$x, col=factor(p3k.coarse), pch=19, cex=.3)
+```
+
+### 75-dim cell embedding
+
+Colored with coarse labeling:
+
+```{r lk75a,message=FALSE}
+sceplus = grab_bgdemo_sce(use_400=FALSE)
+sceplus
+data(p3k.coarse)
+library(irlba)
+pca = prcomp_irlba(t(assay(altExp(sceplus))),4)
+pairs(pca$x, col=factor(p3k.coarse), pch=19, cex=.3)
+```
+
+Colored with fine labeling:
+
+```{r lk75b}
+data(p3k.fine)
+pairs(pca$x, col=factor(p3k.fine), pch=19, cex=.3)
+```
+
+
+
+
+
+### Background on direct work with the embedding outputs
+
+```{r doit}
+gg = grab_bgdemo()
+td = tempdir()
+unzip(gg, exdir=td)
+mm = make_demo_emb(td)
+rhdf5::h5ls(dir(mm$conf$edge_paths[1], full=TRUE))
 ```
 
