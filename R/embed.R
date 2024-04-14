@@ -1,4 +1,6 @@
 #' produce a list with defaults or substitutes for most configuration parameters
+#' @importFrom reticulate import import_from_path r_to_py
+#' @import SummarizedExperiment
 #' @param dimension integer(1) defaults to 400
 #' @param init_scale numeric(1) defaults to 0.001
 #' @param max_norm defaults to NULL
@@ -471,7 +473,7 @@ can_retain = c("background_io", "batch_size",
  colnames(csce) = ing$C_entities_ordered
  csce = csce[, colnames(sce)] # reorder
  altExp(sce, "pbg_cell_emb") = csce
- metadata(sce) = c(metadata(sce), call=clkeep)
+ S4Vectors::metadata(sce) = c(S4Vectors::metadata(sce), call=clkeep)
  sce 
 
   }, sce=sce, workdir=workdir, N_PARTITIONS=N_PARTITIONS, FEATURIZED=FEATURIZED, 

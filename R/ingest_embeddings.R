@@ -7,7 +7,7 @@
 #' names(nnn)
 #' pp = prcomp(t(nnn$cemb))
 #' data(p3k.fine)
-#' p3k=TENxPBMCData("pbmc3k")
+#' p3k=TENxPBMCData::TENxPBMCData("pbmc3k")
 #' p3k = scuttle::logNormCounts(p3k)
 #' mm = match(p3k$Barcode, nnn$C_entities_ordered)
 #' pairs(pp$x[mm,2:4], pch=19, cex=.4, col=factor(p3k.fine))
@@ -18,7 +18,7 @@ ingest_embeddings = function(outemb) {
 #
    chkp = outemb$conf$checkpoint_path
    entp = outemb$conf$entity_path
-   hpath = dir(chkp, full.names=TRUE, patt="h5$")
+   hpath = dir(chkp, full.names=TRUE, pattern="h5$")
    cembpath = grep("C_0", hpath, value=TRUE)
    gembpath = grep("G_0", hpath, value=TRUE)
 

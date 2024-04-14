@@ -215,7 +215,7 @@ can_retain = c("background_io", "batch_size",
  colnames(csce) = ing$C_entities_ordered
  csce = csce[, colnames(sce)] # reorder
  altExp(sce, "pbg_cell_emb") = csce
- metadata(sce) = list(ini=metadata(sce), call=clkeep, conf=response,
+ S4Vectors::metadata(sce) = list(ini=S4Vectors::metadata(sce), call=clkeep, conf=response,
      g_emb=g_emb, g_ent_ord=g_ent_ord, stats=ing$stats)
  sce 
 }

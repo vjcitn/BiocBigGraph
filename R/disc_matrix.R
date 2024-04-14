@@ -1,4 +1,6 @@
 #' discretize a dense matrix
+#' @importFrom stats quantile
+#' @importFrom utils write.table
 #' @param x matrix
 #' @param n_bins numeric(1)
 #' @param q4pos logical(1) if TRUE, quantiles are formed for positive entries only to form the cutpoints

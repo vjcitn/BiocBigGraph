@@ -8,8 +8,9 @@ Authors@R:
     role=c("cre", "aut")))
 Depends: R (>= 4.3), reticulate, methods, SummarizedExperiment,
 	SingleCellExperiment
-Suggests: TENxPBMCData, scuttle, knitr, SingleR, scater
-Imports: basilisk, scran
+Suggests: TENxPBMCData, scuttle, knitr, SingleR, scater, testthat, ggplot2
+Imports: basilisk, scran, httr, BiocFileCache,
+ 	basilisk.utils, jsonlite, rhdf5, S4Vectors, stats, utils
 License: Artistic-2.0
 biocViews: StatisticalMethod, DimensionReduction, Infrastructure
 RoxygenNote: 7.3.1
