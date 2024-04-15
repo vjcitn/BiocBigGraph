@@ -20,11 +20,12 @@ data.frame with elements rank, prob, and propagated columns
 set up a data.frame for barplot visualization for a gene
 }
 \examples{
-data(nn50)
-data(t3k)
-t3k = add_simba_scores(nn50, t3k)
+sce = grab_bgdemo_sce()
+data(p3k.coarse)
+sce$celltype = p3k.coarse
+sce = add_simba_scores(sce)
 gns = c("CST3", "MS4A1", "NKG7", "GAPDH")
-alldf = lapply(gns, function(x) simba_barplot_df(t3k, x, 
+alldf = lapply(gns, function(x) simba_barplot_df(sce, x, 
   colvars = "celltype"))
 alldf = do.call(rbind, alldf)
 ggplot(alldf, aes(x=rank,xend=rank,y=0, yend=prob,colour=celltype)) + geom_point() +

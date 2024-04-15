@@ -1,18 +1,3 @@
-#' update an SCE with simba edge scores
-#' @param embs output of sce_to_embeddings
-#' @param sce the associated sce
-#' @return SCE updated with altExp giving the simba scores
-#' @examples
-#' data(nn50)
-#' data(t3k)
-#' t3k = add_simba_scores(nn50, t3k)
-#' t3k
-#' @export
-add_simba_scores = function(embs, sce) {
-  ep = embs_to_scores(embs, sce)
-  altExp(sce, "sprobs", withDimnames=FALSE) = ep
-  sce
-}
 
 #' set up a data.frame for barplot visualization for a gene
 #' @param sce SingleCellExperiment with altExp element "sprobs"
@@ -20,11 +5,12 @@ add_simba_scores = function(embs, sce) {
 #' @param colvars character() columns from colData(sce) to propagate
 #' @return data.frame with elements rank, prob, and propagated columns
 #' @examples
-#' data(nn50)
-#' data(t3k)
-#' t3k = add_simba_scores(nn50, t3k)
+#' sce = grab_bgdemo_sce()
+#' data(p3k.coarse)
+#' sce$celltype = p3k.coarse
+#' sce = add_simba_scores(sce)
 #' gns = c("CST3", "MS4A1", "NKG7", "GAPDH")
-#' alldf = lapply(gns, function(x) simba_barplot_df(t3k, x, 
+#' alldf = lapply(gns, function(x) simba_barplot_df(sce, x, 
 #'   colvars = "celltype"))
 #' alldf = do.call(rbind, alldf)
 #' ggplot(alldf, aes(x=rank,xend=rank,y=0, yend=prob,colour=celltype)) + geom_point() +
