@@ -8,7 +8,8 @@ Authors@R:
     role=c("cre", "aut")))
 Depends: R (>= 4.3), reticulate, methods, SummarizedExperiment,
 	SingleCellExperiment, ggplot2
-Suggests: TENxPBMCData, scuttle, knitr, SingleR, scater, testthat
+Suggests: TENxPBMCData, scuttle, knitr, SingleR, scater, testthat,
+	irlba
 Imports: basilisk, scran, httr, BiocFileCache,
  	basilisk.utils, jsonlite, rhdf5, S4Vectors, stats, utils
 License: Artistic-2.0

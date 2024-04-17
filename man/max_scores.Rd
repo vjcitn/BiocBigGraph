@@ -19,7 +19,6 @@ sc3k = grab_bgdemo_sce()
 sc3k = add_simba_scores(sc3k)
 gi = gini(t(assay(altExps(sc3k)$sprobs)))
 ma = as.numeric(max_scores(sc3k))
-plot(ma, gi)
 mydf = data.frame(max=as.numeric(ma), gini=gi, gene=rownames(altExps(sc3k)$sprobs))
 litd = mydf[order(mydf$gini,decreasing=TRUE),][1:25,]
 hh = mydf[mydf$gene=="GAPDH",] 

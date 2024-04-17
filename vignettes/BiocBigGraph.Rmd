@@ -39,7 +39,10 @@ p3k
 Develop a provisional labeling with SingleR.
 
 
-```{r dosing, message=FALSE}
+This code chunk was used to produce data
+elements `p3k.fine` and `p3k.coarse`.
+
+```{r dosing, message=FALSE,eval=FALSE}
 library(SingleR)
 hpca = HumanPrimaryCellAtlasData()
 inirown = rownames(p3k)
@@ -104,13 +107,52 @@ data(p3k.fine)
 pairs(pca$x, col=factor(p3k.fine), pch=19, cex=.3)
 ```
 
+## Working with the embedding
+
+### The SIMBA scores
+
+The SIMBA paper describes probability-like scores
+derived from the embedding that measure the
+strength of association between genes and cells.
+
+```{r dobarp,fig.width=8}
+sce = grab_bgdemo_sce()
+data(p3k.coarse)
+sce$celltype = p3k.coarse
+sce = add_simba_scores(sce)
+gns = c("CST3", "MS4A1", "NKG7", "GAPDH")
+alldf = lapply(gns, function(x) simba_barplot_df(sce, x, 
+  colvars = "celltype"))
+alldf = do.call(rbind, alldf)
+ggplot(alldf, aes(x=rank,xend=rank,y=0, yend=prob,colour=celltype)) + geom_point() +
+  geom_segment() + facet_wrap(~symbol, ncol=2) + 
+    theme(strip.text=element_text(size=18), 
+      legend.text=element_text(size=18), 
+      axis.text=element_text(size=18)) +
+    guides(colour = guide_legend(override.aes = 
+       list(linetype=1, lwd=2)))
+```
+
+### Exposing marker genes via the Gini index
+
+```{r dogini, message=FALSE}
+example(max_scores)
+```
 
 
 
 
-### Background on direct work with the embedding outputs
 
-```{r doit}
+
+
+# Background on direct work with the embedding outputs
+
+The pyTorch-BigGraph system produces a number
+of output components.  An example is made available fo
+exploration
+with `grab_bgdemo()`.
+
+```{r doit, message=FALSE}
 gg = grab_bgdemo()
 td = tempdir()
 unzip(gg, exdir=td)
