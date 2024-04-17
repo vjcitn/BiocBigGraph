@@ -1,3 +1,23 @@
+#' produce simba barplot for selected gene
+#' @param sce a SingleCellExperiment for which add_simba_scores has been run
+#' @param colvar character(1) variable in colData(sce) to use for cell type,
+#' defining bar colors
+#' @param sym character(1) name of row in sce for which expression scores should
+#' be visualized
+#' @return ggplot instance
+#' @examples
+#' sce = grab_bgdemo_sce()
+#' data(p3k.coarse)
+#' sce$celltype = p3k.coarse
+#' sce = add_simba_scores(sce)
+#' simba_barplot(sce, "celltype", "NKG7") +
+#'  ylab("SIMBA celltype:expression score for NKG7") + ggtitle("PBMC3K")
+#' @export
+simba_barplot = function(sce, colvar, sym) {
+ datf = simba_barplot_df(sce, sym, colvars=colvar)
+ ggplot(datf, aes(x=rank, xend=rank, y=0, yend=prob,
+   colour=celltype)) + geom_segment()
+ }
 
 #' set up a data.frame for barplot visualization for a gene
 #' @param sce SingleCellExperiment with altExp element "sprobs"
