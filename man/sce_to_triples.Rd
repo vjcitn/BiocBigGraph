@@ -11,7 +11,8 @@ sce_to_triples(
   ngenes = 5000,
   n_bins = 5,
   colname = "Barcode",
-  cuts = NULL
+  cuts = NULL,
+  filter = TRUE
 )
 }
 \arguments{
@@ -27,6 +28,8 @@ scran::modelGeneVar on logcounts}
 \item{colname}{character(1) passed to make_triples, defaults to "Barcode"}
 
 \item{cuts}{numeric() passed to disc_matrix}
+
+\item{filter}{logical(1) defaults to TRUE, if false, skip getTopHVGs}
 }
 \description{
 filter a discretized SCE using getTopHVGs from scran, then produce triples (edges)

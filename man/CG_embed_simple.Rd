@@ -8,6 +8,7 @@ CG_embed_simple(
   sce,
   cell_id_var,
   workdir = tempdir(),
+  filter = TRUE,
   N_GENES = 1000,
   N_BINS = 5,
   N_PARTITIONS = 1L,
@@ -26,6 +27,8 @@ column of colData(sce) that is to be used as colnames
 (which is often missing)}
 
 \item{workdir}{location of temporary storage, defaults to tempdir()}
+
+\item{filter}{logical(1) passed to 'sce_to_triples'}
 
 \item{N_GENES}{numeric(1) passed to 'sce_to_triples'}
 

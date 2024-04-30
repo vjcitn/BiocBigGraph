@@ -2,7 +2,7 @@ Package: BiocBigGraph
 Title: Interface to torchbiggraph
 Description: Provides access to a torchbiggraph module slightly modified
 	to avoid a 2023 bug in the facebookresearch github repo source.
-Version: 0.0.5
+Version: 0.0.6
 Authors@R: 
     c(person("Vince", "Carey", email="stvjc@channing.harvard.edu",
     role=c("cre", "aut")))

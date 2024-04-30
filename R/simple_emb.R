@@ -6,6 +6,7 @@
 #' @param workdir location of temporary storage, defaults to tempdir()
 #' @param N_GENES numeric(1) passed to 'sce_to_triples'
 #' @param N_BINS numeric(1) passed to 'sce_to_triples' for discretization
+#' @param filter logical(1) passed to 'sce_to_triples'
 #' @param cuts numeric() passed to 'sce_to_triples' for discretization
 #' @param colname character(1) passed to 'sce_to_triples' identifying 'cell' entity token
 #' @param N_PARTITIONS integer(1) for PytorchBigGraph configuration
@@ -34,7 +35,7 @@
 #' ggplot(mdf, aes(x=PC2, y=PC4, colour=coar, text=coar)) + 
 #'     geom_point()
 #' @export
-CG_embed_simple = function(sce, cell_id_var, workdir=tempdir(), N_GENES=1000, N_BINS=5, 
+CG_embed_simple = function(sce, cell_id_var, workdir=tempdir(), filter=TRUE, N_GENES=1000, N_BINS=5, 
    N_PARTITIONS=1L, FEATURIZED=FALSE, entity_path="ents", cuts=NULL, colname=NULL,
     ...) {
   if (missing(cell_id_var)) stop("cell_id_var must be supplied")
@@ -48,7 +49,7 @@ CG_embed_simple = function(sce, cell_id_var, workdir=tempdir(), N_GENES=1000, N_
   
   clkeep = match.call()
   tsvtarget = paste0(tempfile(tmpdir=workdir), ".tsv")
-  sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS,
+  sce_to_triples(sce, outtsv=tsvtarget, filter=filter, ngenes=N_GENES, n_bins=N_BINS,
      cuts=cuts, colname=colname)
 
 #
