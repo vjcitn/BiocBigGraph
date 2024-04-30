@@ -6,6 +6,8 @@
 #' @param workdir location of temporary storage, defaults to tempdir()
 #' @param N_GENES numeric(1) passed to 'sce_to_triples'
 #' @param N_BINS numeric(1) passed to 'sce_to_triples' for discretization
+#' @param cuts numeric() passed to 'sce_to_triples' for discretization
+#' @param colname character(1) passed to 'sce_to_triples' identifying 'cell' entity token
 #' @param N_PARTITIONS integer(1) for PytorchBigGraph configuration
 #' @param FEATURIZED logical(1) for PytorchBigGraph configuration
 #' @param entity_path character(1) subfolder of tempdir for entity recording
@@ -21,7 +23,7 @@
 #' p3k = scuttle::logNormCounts(p3k)
 #' set.seed(1234)
 #' co = CG_embed_simple(p3k, cell_id_var="Barcode", num_epochs=6L,
-#'    N_GENES=50, dynamic_relations=FALSE)
+#'    N_GENES=50, dynamic_relations=FALSE, colname="Barcode")
 #' co
 #' pp = prcomp(t(assay(altExp(co,"pbg_cell_emb"))))
 #' data(p3k.fine)
@@ -33,7 +35,7 @@
 #'     geom_point()
 #' @export
 CG_embed_simple = function(sce, cell_id_var, workdir=tempdir(), N_GENES=1000, N_BINS=5, 
-   N_PARTITIONS=1L, FEATURIZED=FALSE, entity_path="ents",
+   N_PARTITIONS=1L, FEATURIZED=FALSE, entity_path="ents", cuts=NULL, colname=NULL,
     ...) {
   if (missing(cell_id_var)) stop("cell_id_var must be supplied")
   if (!(cell_id_var %in% names(colData(sce)))) stop(
@@ -46,7 +48,8 @@ CG_embed_simple = function(sce, cell_id_var, workdir=tempdir(), N_GENES=1000, N_
   
   clkeep = match.call()
   tsvtarget = paste0(tempfile(tmpdir=workdir), ".tsv")
-  sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS)
+  sce_to_triples(sce, outtsv=tsvtarget, ngenes=N_GENES, n_bins=N_BINS,
+     cuts=cuts, colname=colname)
 
 #
 # get python modules direct from included source

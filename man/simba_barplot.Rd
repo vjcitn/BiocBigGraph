@@ -4,7 +4,7 @@
 \alias{simba_barplot}
 \title{produce simba barplot for selected gene}
 \usage{
-simba_barplot(sce, colvar, sym)
+simba_barplot(sce, colvar, sym, maxrank = ncol(sce))
 }
 \arguments{
 \item{sce}{a SingleCellExperiment for which add_simba_scores has been run}
@@ -14,6 +14,8 @@ defining bar colors}
 
 \item{sym}{character(1) name of row in sce for which expression scores should
 be visualized}
+
+\item{maxrank}{numeric(1) largest rank to retain, defaults to total number of cells}
 }
 \value{
 ggplot instance

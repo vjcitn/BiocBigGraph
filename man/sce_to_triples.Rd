@@ -2,23 +2,34 @@
 % Please edit documentation in R/sce2trip.R
 \name{sce_to_triples}
 \alias{sce_to_triples}
-\title{filter a discretized SCE using getTopHVGs from scran, the produce triples (edges)
+\title{filter a discretized SCE using getTopHVGs from scran, then produce triples (edges)
 (cell - weight - gene)}
 \usage{
-sce_to_triples(sce, outtsv, ngenes = 5000, n_bins = 5)
+sce_to_triples(
+  sce,
+  outtsv,
+  ngenes = 5000,
+  n_bins = 5,
+  colname = "Barcode",
+  cuts = NULL
+)
 }
 \arguments{
 \item{sce}{instance of SingleCellExperiment with assays logcounts}
 
 \item{outtsv}{character(1) file to hold triples in tsv format}
 
-\item{ngenes}{numeric(1) number of genes to retain from getTopHVGs after}
-
-\item{n_bins}{numeric(1) passed to disc_matrix, defaults to 5
+\item{ngenes}{numeric(1) number of genes to retain from getTopHVGs after
 scran::modelGeneVar on logcounts}
+
+\item{n_bins}{numeric(1) passed to disc_matrix, defaults to 5}
+
+\item{colname}{character(1) passed to make_triples, defaults to "Barcode"}
+
+\item{cuts}{numeric() passed to disc_matrix}
 }
 \description{
-filter a discretized SCE using getTopHVGs from scran, the produce triples (edges)
+filter a discretized SCE using getTopHVGs from scran, then produce triples (edges)
 (cell - weight - gene)
 }
 \examples{

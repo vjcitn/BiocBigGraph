@@ -13,6 +13,8 @@ CG_embed_simple(
   N_PARTITIONS = 1L,
   FEATURIZED = FALSE,
   entity_path = "ents",
+  cuts = NULL,
+  colname = NULL,
   ...
 )
 }
@@ -35,6 +37,10 @@ column of colData(sce) that is to be used as colnames
 
 \item{entity_path}{character(1) subfolder of tempdir for entity recording}
 
+\item{cuts}{numeric() passed to 'sce_to_triples' for discretization}
+
+\item{colname}{character(1) passed to 'sce_to_triples' identifying 'cell' entity token}
+
 \item{\dots}{passed directly to \code{set_config}}
 }
 \value{
@@ -55,7 +61,7 @@ assay(p3k) = as.matrix(assay(p3k)) # dense for now
 p3k = scuttle::logNormCounts(p3k)
 set.seed(1234)
 co = CG_embed_simple(p3k, cell_id_var="Barcode", num_epochs=6L,
-   N_GENES=50, dynamic_relations=FALSE)
+   N_GENES=50, dynamic_relations=FALSE, colname="Barcode")
 co
 pp = prcomp(t(assay(altExp(co,"pbg_cell_emb"))))
 data(p3k.fine)

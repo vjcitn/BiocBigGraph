@@ -4,6 +4,7 @@
 #' defining bar colors
 #' @param sym character(1) name of row in sce for which expression scores should
 #' be visualized
+#' @param maxrank numeric(1) largest rank to retain, defaults to total number of cells
 #' @return ggplot instance
 #' @examples
 #' sce = grab_bgdemo_sce()
@@ -13,10 +14,11 @@
 #' simba_barplot(sce, "celltype", "NKG7") +
 #'  ylab("SIMBA celltype:expression score for NKG7") + ggtitle("PBMC3K")
 #' @export
-simba_barplot = function(sce, colvar, sym) {
+simba_barplot = function(sce, colvar, sym, maxrank=ncol(sce)) {
  datf = simba_barplot_df(sce, sym, colvars=colvar)
+ datf = datf[which(datf$rank <= maxrank),]
  ggplot(datf, aes(x=rank, xend=rank, y=0, yend=prob,
-   colour=celltype)) + geom_segment()
+   colour=celltype)) + geom_segment(linewidth=.3) 
  }
 
 #' set up a data.frame for barplot visualization for a gene

@@ -4,7 +4,7 @@
 \alias{disc_matrix}
 \title{discretize a dense matrix}
 \usage{
-disc_matrix(x, n_bins = 5, q4pos = TRUE)
+disc_matrix(x, n_bins = 5, q4pos = TRUE, cuts = NULL)
 }
 \arguments{
 \item{x}{matrix}
@@ -12,6 +12,9 @@ disc_matrix(x, n_bins = 5, q4pos = TRUE)
 \item{n_bins}{numeric(1)}
 
 \item{q4pos}{logical(1) if TRUE, quantiles are formed for positive entries only to form the cutpoints}
+
+\item{cuts}{numeric vector, if NULL, quantiles are used as noted,
+otherwise these are used with cut()}
 }
 \value{
 matrix with values 0:(nbins-1) corresponding to quantile groups

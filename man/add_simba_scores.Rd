@@ -8,8 +8,6 @@ add_simba_scores(sce, aeind = 1)
 }
 \arguments{
 \item{sce}{a SingleCellExperiment instance with \code{pbg_cell_emb} in altExps and \code{g_emb} in metadata}
-
-\item{aeind}{numeric(1) defaults to 1, picking from multiple altExps for the pbg cell embedding}
 }
 \description{
 add the SIMBA gene:cell probabilities to an SCE with embeddings available
