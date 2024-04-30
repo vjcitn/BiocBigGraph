@@ -1,0 +1,13 @@
+
+library(BiocBigGraph)
+# p3k = TENxPBMCData::TENxPBMCData("pbmc3k")
+# assay(p3k) = as.matrix(assay(p3k)) # dense for now
+# p3k = scuttle::logNormCounts(p3k)
+# set.seed(1234)
+ load("buen_rsce.rda")
+ rownames(buen_rsce) = as.character(rowRanges(buen_rsce))
+ assayNames(buen_rsce) = "logcounts"
+ co = CG_embed_simple(buen_rsce, workdir="buenout", cell_id_var="cell_barcode", num_epochs=6L,
+    filter=FALSE, dynamic_relations=FALSE, num_gpus=1L, colname="cell_barcode",
+    cuts = c(-1,2,4,6,10,Inf))
+
