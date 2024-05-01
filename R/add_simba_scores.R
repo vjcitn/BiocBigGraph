@@ -7,7 +7,7 @@
 #' nkg7 = as.numeric(assay(altExp(sce2, "sprobs")["NKG7",]))
 #' lm(nkg7~factor(p3k.coarse))
 #' @export
-add_simba_scores = function(sce, aeind=1) {
+add_simba_scores = function(sce) {
    stopifnot("pbg_cell_emb" %in% names(altExps(sce)))
    stopifnot("g_emb" %in% names(metadata(sce)))
    simba_scores = function(cemb, gemb) {

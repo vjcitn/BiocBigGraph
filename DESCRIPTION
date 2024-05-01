@@ -2,16 +2,17 @@ Package: BiocBigGraph
 Title: Interface to torchbiggraph
 Description: Provides access to a torchbiggraph module slightly modified
 	to avoid a 2023 bug in the facebookresearch github repo source.
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: 
     c(person("Vince", "Carey", email="stvjc@channing.harvard.edu",
     role=c("cre", "aut")))
-Depends: R (>= 4.3), reticulate, methods, SummarizedExperiment,
+Depends: R (>= 4.3), reticulate, SummarizedExperiment,
 	SingleCellExperiment, ggplot2
 Suggests: TENxPBMCData, scuttle, knitr, SingleR, scater, testthat,
 	irlba
 Imports: basilisk, scran, httr, BiocFileCache,
- 	basilisk.utils, jsonlite, rhdf5, S4Vectors, stats, utils
+ 	basilisk.utils, jsonlite, rhdf5, S4Vectors, stats, utils,
+	plotly, shiny, ggrepel
 License: Artistic-2.0
 biocViews: StatisticalMethod, DimensionReduction, Infrastructure
 RoxygenNote: 7.3.1

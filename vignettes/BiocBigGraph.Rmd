@@ -124,6 +124,7 @@ gns = c("CST3", "MS4A1", "NKG7", "GAPDH")
 alldf = lapply(gns, function(x) simba_barplot_df(sce, x, 
   colvars = "celltype"))
 alldf = do.call(rbind, alldf)
+library(ggplot2)
 ggplot(alldf, aes(x=rank,xend=rank,y=0, yend=prob,colour=celltype)) + geom_point() +
   geom_segment() + facet_wrap(~symbol, ncol=2) + 
     theme(strip.text=element_text(size=18), 

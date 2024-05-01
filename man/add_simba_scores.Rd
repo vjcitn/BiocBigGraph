@@ -4,7 +4,7 @@
 \alias{add_simba_scores}
 \title{add the SIMBA gene:cell probabilities to an SCE with embeddings available}
 \usage{
-add_simba_scores(sce, aeind = 1)
+add_simba_scores(sce)
 }
 \arguments{
 \item{sce}{a SingleCellExperiment instance with \code{pbg_cell_emb} in altExps and \code{g_emb} in metadata}

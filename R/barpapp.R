@@ -1,6 +1,10 @@
 #' app for exploring the barplots
 #' @import shiny
+#' @import ggplot2
+#' @import ggrepel
 #' @importFrom plotly plotlyOutput renderPlotly ggplotly
+#' @param sce SingleCellExperiment
+#' @param colvar character(1) must be present in colData(sce)
 #' @examples
 #' example(simba_barplot) # defines sce, adds 'celltype'
 #' data(p3k.fine)

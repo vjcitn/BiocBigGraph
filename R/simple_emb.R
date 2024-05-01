@@ -4,6 +4,7 @@
 #' column of colData(sce) that is to be used as colnames
 #' (which is often missing)
 #' @param workdir location of temporary storage, defaults to tempdir()
+#' @param tsvprefix character(1) if NULL, uses tempfile()
 #' @param N_GENES numeric(1) passed to 'sce_to_triples'
 #' @param N_BINS numeric(1) passed to 'sce_to_triples' for discretization
 #' @param filter logical(1) passed to 'sce_to_triples'
@@ -35,7 +36,8 @@
 #' ggplot(mdf, aes(x=PC2, y=PC4, colour=coar, text=coar)) + 
 #'     geom_point()
 #' @export
-CG_embed_simple = function(sce, cell_id_var, workdir=tempdir(), filter=TRUE, N_GENES=1000, N_BINS=5, 
+CG_embed_simple = function(sce, cell_id_var, workdir=tempdir(), tsvprefix=NULL, 
+   filter=TRUE, N_GENES=1000, N_BINS=5, 
    N_PARTITIONS=1L, FEATURIZED=FALSE, entity_path="ents", cuts=NULL, colname=NULL,
     ...) {
   if (missing(cell_id_var)) stop("cell_id_var must be supplied")
@@ -48,9 +50,13 @@ CG_embed_simple = function(sce, cell_id_var, workdir=tempdir(), filter=TRUE, N_G
   N_BINS = as.integer(N_BINS)
   
   clkeep = match.call()
-  tsvtarget = paste0(tempfile(tmpdir=workdir), ".tsv")
-  sce_to_triples(sce, outtsv=tsvtarget, filter=filter, ngenes=N_GENES, n_bins=N_BINS,
-     cuts=cuts, colname=colname)
+  if (is.null(tsvprefix)) tsvprefix=tempfile(tmpdir=workdir)
+    else tsvprefix=paste0(file.path(workdir, tsvprefix))
+  tsvtarget = paste0(tsvprefix, ".tsv")
+  if (!file.exists(tsvtarget)) {
+     sce_to_triples(sce, outtsv=tsvtarget, filter=filter, ngenes=N_GENES, n_bins=N_BINS,
+        cuts=cuts, colname=colname)
+     }
 
 #
 # get python modules direct from included source

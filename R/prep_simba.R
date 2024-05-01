@@ -12,7 +12,7 @@
 #' sce$celltype = p3k.coarse
 #' sce = add_simba_scores(sce)
 #' simba_barplot(sce, "celltype", "NKG7") +
-#'  ylab("SIMBA celltype:expression score for NKG7") + ggtitle("PBMC3K")
+#'  ggplot2::ylab("SIMBA celltype:expression score for NKG7") + ggplot2::ggtitle("PBMC3K")
 #' @export
 simba_barplot = function(sce, colvar, sym, maxrank=ncol(sce)) {
  datf = simba_barplot_df(sce, sym, colvars=colvar)

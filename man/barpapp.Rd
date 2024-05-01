@@ -6,6 +6,11 @@
 \usage{
 barpapp(sce, colvar)
 }
+\arguments{
+\item{sce}{SingleCellExperiment}
+
+\item{colvar}{character(1) must be present in colData(sce)}
+}
 \description{
 app for exploring the barplots
 }

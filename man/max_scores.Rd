@@ -23,6 +23,7 @@ mydf = data.frame(max=as.numeric(ma), gini=gi, gene=rownames(altExps(sc3k)$sprob
 litd = mydf[order(mydf$gini,decreasing=TRUE),][1:25,]
 hh = mydf[mydf$gene=="GAPDH",] 
 litd = rbind(litd, hh)
+library(ggplot2)
 mm = ggplot(mydf, aes(x=max, y=gini, text=gene)) + geom_point() 
 mm + ggrepel::geom_text_repel(data=litd, 
          aes(x=max, y=gini, label=gene), colour="purple")
