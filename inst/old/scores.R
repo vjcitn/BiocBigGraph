@@ -1,3 +1,6 @@
+#' utility for scoring - possibly obsolete
+#' @param embout output of CG_simple_emb
+#' @param sce SingleCellExperiment instance
 #' @param colfeat character(1) element of colData of `sce` to index cells
 #' @param rowfeat character(1) element of rowData of `sce` to index genes
 #' @return a SummarizedExperiment
